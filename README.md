@@ -10,11 +10,11 @@ User can choose from a 15-20 minute workout or 30-60 minute workout and will rec
 User can choose a workout focusing on chest/back, legs, core, etc
 User will be able to save the generated workout(s) to their account
 
-# MVP features
+## MVP features
 Ruby on Rails project
 Database will include muscles/muscle groups, exercises
 
-# Stretch goals
+## Stretch goals
 Able to share via social media
 User can create their own workout by choosing exercises
 Add a stopwatch function
