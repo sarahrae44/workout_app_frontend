@@ -1,6 +1,6 @@
 # projectFiveWorkoutGenerator
 
-# User stories
+## User stories
 
 User will see a sample of workouts on the home page 
 User will need to create an account to see more exercises/workouts
