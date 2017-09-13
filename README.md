@@ -1,5 +1,7 @@
 # projectFiveWorkoutGenerator
 
+A website based on a strength training anatomy book I have
+
 ## User stories
 
 User will see a sample of workouts on the home page 
