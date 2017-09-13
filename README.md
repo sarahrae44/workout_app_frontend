@@ -21,3 +21,4 @@ Able to share via social media
 User can create their own workout by choosing exercises
 Add a stopwatch function
 Add an image of the human body with 'hot spots' that will take user to various exercises that correspond with that part of the body (instead of via a list)
+List of equipment needed
