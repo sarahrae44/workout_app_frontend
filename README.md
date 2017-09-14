@@ -1,4 +1,4 @@
-# projectFiveWorkoutGenerator
+# workout_app_frontend
 
 A website based on a strength training anatomy book I have
 
