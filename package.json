@@ -1,0 +1,19 @@
+{
+  "name": "workout_app_frontend",
+  "version": "1.0.0",
+  "description": "A website based on a strength training anatomy book I have",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sarahrae44/workout_app_frontend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sarahrae44/workout_app_frontend/issues"
+  },
+  "homepage": "https://github.com/sarahrae44/workout_app_frontend#readme"
+}
