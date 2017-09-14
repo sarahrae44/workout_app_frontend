@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/sarahrae44/workout_app_frontend/issues"
   },
-  "homepage": "https://github.com/sarahrae44/workout_app_frontend#readme"
+  "homepage": "https://github.com/sarahrae44/workout_app_frontend#readme",
+  "dependencies": {
+    "express": "^4.15.4"
+  }
 }
