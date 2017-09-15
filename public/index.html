@@ -24,6 +24,14 @@
     <div ng-repeat="user in ctrl.users">
       <h1>{{ user.username }}</h1>
     </div>
+    <h4 ng-click="ctrl.getBodies()">Click to see muscle groups</h4>
+    <div ng-repeat="body in ctrl.body track by $index">
+      <h3>{{ body.name }}</h3>
+    </div>
+    <h4 ng-click="ctrl.getExercises()">Click to see exercises</h4>
+    <div ng-repeat="exercise in ctrl.exercise track by $index">
+      <h3>{{ exercise.name }}</h3>
+    </div>
     <a href="#" ng-click="ctrl.logout()">Log Out</a>
   </body>
 </html>
