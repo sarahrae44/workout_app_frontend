@@ -37,6 +37,11 @@ app.controller('mainController', ['$http', function($http) {
       }
     }.bind(this));
   }
+
+  this.logout = function() {
+    localStorage.clear('token');
+    location.reload();
+  }
   // $http({
   //   method: 'GET',
   //   url: 'http://localhost:3000/',
