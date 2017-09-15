@@ -7,7 +7,7 @@ app.controller('mainController', ['$http', function($http) {
 
   $http({
     method: 'GET',
-    url: 'http://localhost:3000/bodies',
+    url: 'http://localhost:3000/',
   }).then(response => console.log(response))
     .catch(err => console.log(err));
 
