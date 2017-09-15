@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="workout">
+<html ng-app="workout_app">
   <head>
     <meta charset="utf-8">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
@@ -8,7 +8,21 @@
     <title>Workout generator</title>
   </head>
   <body ng-controller="mainController as ctrl">
+
+    <form ng-submit="ctrl.login(userPass)">
+      <input type="text" ng-model="userPass.username" placeholder="username"/>
+      <input type="password" ng-model="userPass.password" placeholder="password"/>
+      <input type="submit"/>
+    </form>
+
+
     <h3>Workout home page</h3>
     {{ ctrl.message }}
+    <p>Logged in username: {{ ctrl.user.username }} </p>
+    <h4 ng-click="ctrl.getUsers()">Click to see secret stuff</h4>
+    <div> {{ ctrl.error }} </div>
+    <div ng-repeat="user in ctrl.users">
+      <h1>{{ user.username }}</h1>
+    </div>
   </body>
 </html>
