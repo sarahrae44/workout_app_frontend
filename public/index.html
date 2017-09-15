@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="workout">
   <head>
     <meta charset="utf-8">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="style.css">
     <title>Workout generator</title>
   </head>
-  <body>
+  <body ng-controller="mainController as ctrl">
     <h3>Workout home page</h3>
+    {{ ctrl.message }}
   </body>
 </html>
