@@ -75,13 +75,29 @@ app.controller('mainController', ['$http', function($http) {
     location.reload();
   }
 
+  // edit user
+
+  this.updatedUser = function(username, password) {
+    $http({
+      method: 'PATCH',
+      headers: {
+        Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
+      },
+      url: this.url + '/users/' + this.user.id,
+      data: { user: { username: username, password: password }}
+    }).then(function(response) {
+      console.log(response);
+      console.log(response.data);
+      this.user = response.data;
+    }.bind(this));
+  }
+
   // delete user
   this.deleteUser = function(userPass) {
     $http({
       method: 'DELETE',
       url: this.url + '/users/' + this.user.id
     }).then(function(response) {
-      console.log(response);
       this.logout();
     }.bind(this));
   }
