@@ -8,6 +8,9 @@ app.controller('mainController', ['$http', function($http) {
   this.url = 'http://localhost:3000';
   this.user = {};
   this.users = [];
+  this.muscle = {};
+  this.body = {};
+  this.body.exercise = {};
 
 // ===================== User-related =========================
 // user login
@@ -65,6 +68,16 @@ this.getBodies = function() {
   }).then(function(response) {
     console.log(response.data);
     controller.body = response.data;
+  })
+}
+
+this.getBodiesExercises = function(){
+  $http({
+    url: this.url + '/bodies/' + this.body.id + '/exercises',
+    method: 'GET'
+  }).then(function(response) {
+    console.log(response.data);
+    controller.muscle = response.data;
   })
 }
 

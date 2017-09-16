@@ -26,11 +26,25 @@
     </div>
     <h4 ng-click="ctrl.getBodies()">Click to see muscle groups</h4>
     <div ng-repeat="body in ctrl.body track by $index">
-      <h3>{{ body.name }}</h3>
+      <h3><a href="#" ng-click="showExercises = ! showExercises">{{ body.name }}</a></h3>
+      <img src="{{ body.img }}">
+      <div ng-show="showExercises" ng-repeat="exercise in body.exercises track by $index">
+        <h4>{{ exercise.name }}</h4>
+        <img src="{{ exercise.img }}">
+        <p>{{ exercise.desc }}</p>
+      </div>
     </div>
+
     <h4 ng-click="ctrl.getExercises()">Click to see exercises</h4>
     <div ng-repeat="exercise in ctrl.exercise track by $index">
-      <h3>{{ exercise.name }}</h3>
+      <h3><a href="#" ng-click="showMuscles = ! showMuscles">{{ exercise.name }}</a></h3>
+      <img src="{{ exercise.img }}">
+      <div ng-show="showMuscles" ng-repeat="body in exercise.bodies track by $index">
+        <h4>{{ body.name }}</h4>
+        <img src="{{ body.img}}">
+        <p>{{ body.desc }}</p>
+      </div>
+
     </div>
     <a href="#" ng-click="ctrl.logout()">Log Out</a>
   </body>
