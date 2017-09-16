@@ -25,6 +25,12 @@
       <input type="submit"/>
     </form>
 
+    <!-- Delete button -->
+    <form ng-submit="ctrl.deleteUser(userPas)" accept-charset="UTF-8" action="/users/1" method="delete">
+      <input name="_method" type="hidden" value="destroy"/>
+      <button>Delete</button>
+    </form>
+
 
     <h3>Workout home page</h3>
     {{ ctrl.message }}

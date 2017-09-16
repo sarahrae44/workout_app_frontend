@@ -74,6 +74,18 @@ app.controller('mainController', ['$http', function($http) {
     localStorage.clear('token');
     location.reload();
   }
+
+  // delete user
+  this.deleteUser = function(userPass) {
+    $http({
+      method: 'DELETE',
+      url: this.url + '/users/' + this.user.id
+    }).then(function(response) {
+      console.log(response);
+      this.logout();
+    }.bind(this));
+  }
+
   // $http({
   //   method: 'GET',
   //   url: 'http://localhost:3000/',
