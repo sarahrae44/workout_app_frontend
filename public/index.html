@@ -25,12 +25,19 @@
       <input type="submit"/>
     </form>
 
+    <!-- Edit form -->
+    <h3>Edit User</h3>
+    <form ng-submit="ctrl.updatedUser(ctrl.updatedUser.username, ctrl.updatedUser.password)">
+      <input type="text" placeholder="{{ ctrl.userPass.username }}" ng-model="ctrl.updatedUser.username">
+      <input type="password" ng-model="ctrl.updatedUser.password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;">
+      <button type="submit">Confirm</button>
+    </form>
+
     <!-- Delete button -->
     <form ng-submit="ctrl.deleteUser(userPas)" accept-charset="UTF-8" action="/users/1" method="delete">
       <input name="_method" type="hidden" value="destroy"/>
-      <button>Delete</button>
+      <button>Delete User</button>
     </form>
-
 
     <h3>Workout home page</h3>
     {{ ctrl.message }}
