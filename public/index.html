@@ -33,7 +33,7 @@
       <button type="submit">Confirm</button>
     </form>
 
-    <!-- Delete button -->
+    <!-- Delete user button -->
     <form ng-submit="ctrl.deleteUser(userPass)" accept-charset="UTF-8" action="/users/1" method="delete">
       <input name="_method" type="hidden" value="destroy"/>
       <button>Delete User</button>
@@ -51,42 +51,62 @@
     <!-- Bodies section -->
     <h4 ng-click="ctrl.getBodies()">Click to see muscle groups</h4>
     <div ng-repeat="body in ctrl.body track by $index">
-      <h3><a href="#" ng-click="showExercises = ! showExercises; showBodyImage = ! showBodyImage">{{ body.name }}</a> <button ng-click="editBodies = ! editBodies; ctrl.editBody(body);">Edit {{ body.name }}</button></h3>
+      <h3><a href="#" ng-click="showExercises = ! showExercises; showBodyImage = ! showBodyImage">{{ body.name }}</a>
+      </h3>
 
       <!-- Edit body form -->
       <div ng-show="editBodies">
-        <form ng-submit="ctrl.editBody(body)">
-          <input type="text" placeholder="text" ng-model="ctrl.editBody.name">
-          <input type="text" ng-model="ctrl.editBody.img" placeholder="image path">
+        <form ng-submit="ctrl.updatedBody(ctrl.updatedBody)">
+          <input type="text" placeholder="text" ng-model="ctrl.updatedBody.name">
+          <input type="text" ng-model="ctrl.updatedBody.img" placeholder="image path">
           <button type="submit">Confirm</button>
         </form>
       </div>
+      <!-- end of edit body form -->
 
+      <button ng-click="editBodies = ! editBodies; ctrl.editBody(body);">Edit {{ body.name }}</button><br />
+        <form ng-submit="ctrl.deleteBody(body.id)" accept-charset="UTF-8" method="delete">
+          <input name="_method" type="hidden" value="destroy"/>
+          <button>Delete {{ body.name }}</button>
+        </form>
       <img ng-show="showBodyImage" src="{{ body.img }}">
       <div ng-show="showExercises" ng-repeat="exercise in body.exercises track by $index">
         <h4>{{ exercise.name }}</h4>
         <img src="{{ exercise.img }}">
         <p>{{ exercise.desc }}</p>
       </div>
-
-      <h3>Add new muscle/group</h3>
-      <form ng-submit="ctrl.createBody(newBody)">
-        <input type="text" ng-model="newBody.name" placeholder="name"/>
-        <input type="text" ng-model="newBody.img" placeholder="img path"/>
-        <input type="submit">
-      </form>
     </div>
-
-
-
-
-
-
+    <h3>Add new muscle/group</h3>
+    <form ng-submit="ctrl.createBody(newBody)">
+      <input type="text" ng-model="newBody.name" placeholder="name"/>
+      <input type="text" ng-model="newBody.img" placeholder="img path"/>
+      <input type="submit">
+    </form>
 
     <!-- Exercises section -->
     <h4 ng-click="ctrl.getExercises()">Click to see exercises</h4>
     <div ng-repeat="exercise in ctrl.exercise track by $index">
       <h3><a href="#" ng-click="showMuscles = ! showMuscles">{{ exercise.name }}</a></h3>
+
+      <!-- Edit exercise form -->
+      <div ng-show="editExercises">
+        <form ng-submit="ctrl.updatedExercise(ctrl.updatedExercise)">
+          <input type="text" placeholder="text" ng-model="ctrl.updatedExercise.name">
+          <input type="text" ng-model="ctrl.updatedExercise.img" placeholder="image path">
+          <input type="text" placeholder="description" ng-model="ctrl.updatedExercise.desc">
+          <input type="text" ng-model="ctrl.updatedExercise.duration" placeholder="1 or 2">
+          <button type="submit">Confirm</button>
+        </form>
+      </div>
+      <!-- end of edit exercise form -->
+
+      <button ng-click="editExercises = ! editExercises; ctrl.editExercise(exercise);">Edit {{ exercise.name }}</button><br />
+        <form ng-submit="ctrl.deleteExercise(exercise.id)" accept-charset="UTF-8" method="delete">
+          <input name="_method" type="hidden" value="destroy"/>
+          <button>Delete {{ exercise.name }}</button>
+        </form>
+
+
       <img src="{{ exercise.img }}">
       <div ng-show="showMuscles" ng-repeat="body in exercise.bodies track by $index">
         <h4>{{ body.name }}</h4>
