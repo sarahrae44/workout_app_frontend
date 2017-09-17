@@ -9,6 +9,7 @@ app.controller('mainController', ['$http', function($http) {
   this.muscle = {};
   this.body = {};
   this.body.exercise = {};
+  this.currentBody = {};
 
 // ===================== User-related =========================
   this.user = {};
@@ -114,6 +115,18 @@ app.controller('mainController', ['$http', function($http) {
 
 // ===================== Body-related ==========================
 
+// create body
+this.createBody = function(newBody) {
+  $http({
+    url: this.url + '/bodies',
+    method: 'POST',
+    data: { body: { name: newBody.name, img: newBody.img }}
+  }).then(function(response) {
+    console.log(response);
+    this.body = response.data.body;
+  })
+}
+
 // get all bodies
 this.getBodies = function() {
   $http({
@@ -125,13 +138,19 @@ this.getBodies = function() {
   })
 }
 
-this.getBodiesExercises = function(){
+// edit body - NOT WORKING
+
+this.editBody = function(body) {
   $http({
-    url: this.url + '/bodies/' + this.body.id + '/exercises',
-    method: 'GET'
+    method: 'PUT',
+    url: this.url + '/bodies/' + body._id,
+    data: { name: this.updatedName, img: this.updatedImg }
   }).then(function(response) {
-    console.log(response.data);
-    controller.muscle = response.data;
+    controller.name = ''
+    controller.image = ''
+    // controller.currentBody = response.data;
+  }, function(error){
+    console.log(error, 'body error');
   })
 }
 
@@ -139,7 +158,7 @@ this.getBodiesExercises = function(){
 
 // ===================== Exercise-related ==========================
 
-// get all bodies
+// get all exercises
 this.getExercises = function() {
   $http({
     url: this.url + '/exercises',
