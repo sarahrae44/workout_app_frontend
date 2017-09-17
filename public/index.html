@@ -93,8 +93,17 @@
         <img src="{{ body.img }}">
         <p>{{ body.desc }}</p>
       </div>
-
     </div>
+
+    <h3>Add new exercise</h3>
+    <form ng-submit="ctrl.createExercise(newExercise)">
+      <input type="text" ng-model="newExercise.name" placeholder="name"/>
+      <input type="text" ng-model="newExercise.img" placeholder="img path"/>
+      <input type="text" ng-model="newExercise.desc" placeholder="description"/>
+      <input type="text" ng-model="newExercise.duration" placeholder="1 or 2"/>
+      <input type="submit">
+    </form>
+
     <a href="#" ng-click="ctrl.logout()">Log Out</a>
   </body>
 </html>
