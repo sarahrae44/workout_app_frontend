@@ -7,8 +7,7 @@ app.controller('mainController', ['$http', function($http) {
   this.message = "controller works";
   this.url = 'http://localhost:3000';
   this.muscle = {};
-  this.body = {};
-  this.body.exercise = {};
+  // this.body.exercise = {};
   this.currentBody = {};
 
 // ===================== User-related =========================
@@ -115,71 +114,96 @@ app.controller('mainController', ['$http', function($http) {
 
 // ===================== Body-related ==========================
 
-// create body
-this.createBody = function(newBody) {
-  $http({
-    url: this.url + '/bodies',
-    method: 'POST',
-    data: { body: { name: newBody.name, img: newBody.img }}
-  }).then(function(response) {
-    console.log(response);
-    this.body = response.data.body;
-  })
-}
+  this.body = {};
+  this.bodies = [];
 
-// get all bodies
-this.getBodies = function() {
-  $http({
-    url: this.url + '/bodies',
-    method: 'GET'
-  }).then(function(response) {
-    console.log(response.data);
-    controller.body = response.data;
-  })
-}
+  // create body
+  this.createBody = function(newBody) {
+    $http({
+      url: this.url + '/bodies',
+      method: 'POST',
+      data: { body: { name: newBody.name, img: newBody.img }}
+    }).then(function(response) {
+      console.log(response);
+      this.body = response.data.body;
+    })
+  }
 
-// edit body - NOT WORKING
+  // get all bodies
+  this.getBodies = function() {
+    $http({
+      url: this.url + '/bodies',
+      method: 'GET'
+    }).then(function(response) {
+      console.log(response.data);
+      controller.body = response.data;
+    })
+  }
 
-this.editBody = function(body) {
-  $http({
-    method: 'PUT',
-    url: this.url + '/bodies/' + body._id,
-    data: { name: this.updatedName, img: this.updatedImg }
-  }).then(function(response) {
-    controller.name = ''
-    controller.image = ''
-    // controller.currentBody = response.data;
-  }, function(error){
-    console.log(error, 'body error');
-  })
-}
+  // edit body - NOT WORKING
+
+  this.updatedBody = function(updatedBody) {
+    // $http({
+    //   method: 'PUT',
+    //   url: this.url + '/bodies/' + this.body.id,
+    //   data: { body: { name: updatedBody.name, img: updatedBody.img }}
+    // }).then(function(response) {
+    //   this.body = response.data
+    //   // controller.name = ''
+    //   // controller.img = ''
+    //   // controller.currentBody = response.data;
+    // }, function(error){
+    //   console.log(error, 'body error');
+    // })
+    console.log(this.body.id);
+  }
+
+  // delete body
+  this.deleteBody = function(id) {
+    $http({
+      method: 'DELETE',
+      url: this.url + '/bodies/' + id
+    }).then(function(response) {
+      console.log(response);
+    });
+  }
 
 // ===================== End Body-related ==========================
 
 // ===================== Exercise-related ==========================
 
 // create exercise
-this.createExercise = function(newExercise) {
-  $http({
-    url: this.url + '/exercises',
-    method: 'POST',
-    data: { exercise: { name: newExercise.name, img: newExercise.img, desc: newExercise.desc, duration: newExercise.duration }}
-  }).then(function(response) {
-    console.log(response);
-    this.exercise = response.data.exercise;
-  })
-}
+  this.createExercise = function(newExercise) {
+    $http({
+      url: this.url + '/exercises',
+      method: 'POST',
+      data: { exercise: { name: newExercise.name, img: newExercise.img, desc: newExercise.desc, duration: newExercise.duration }}
+    }).then(function(response) {
+      console.log(response);
+      this.exercise = response.data.exercise;
+    })
+  }
 
-// get all exercises
-this.getExercises = function() {
-  $http({
-    url: this.url + '/exercises',
-    method: 'GET'
-  }).then(function(response) {
-    console.log(response.data);
-    controller.exercise = response.data;
-  })
-}
+  // get all exercises
+  this.getExercises = function() {
+    $http({
+      url: this.url + '/exercises',
+      method: 'GET'
+    }).then(function(response) {
+      console.log(response.data);
+      controller.exercise = response.data;
+    })
+  }
+
+  // delete body
+  this.deleteExercise = function(id) {
+    $http({
+      method: 'DELETE',
+      url: this.url + '/exercises/' + id
+    }).then(function(response) {
+      console.log(response);
+    });
+  }
 
 // ===================== End Exercise-related ==========================
 
