@@ -158,6 +158,18 @@ this.editBody = function(body) {
 
 // ===================== Exercise-related ==========================
 
+// create exercise
+this.createExercise = function(newExercise) {
+  $http({
+    url: this.url + '/exercises',
+    method: 'POST',
+    data: { exercise: { name: newExercise.name, img: newExercise.img, desc: newExercise.desc, duration: newExercise.duration }}
+  }).then(function(response) {
+    console.log(response);
+    this.exercise = response.data.exercise;
+  })
+}
+
 // get all exercises
 this.getExercises = function() {
   $http({
