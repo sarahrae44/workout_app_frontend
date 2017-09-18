@@ -131,23 +131,17 @@
 
       <h3 ng-click="ctrl.showDropdowns = ! ctrl.showDropdowns; ctrl.muscleSection = ! ctrl.muscleSection; ctrl.exerciseSection = ! ctrl.exerciseSection; ctrl.getBodies(); ctrl.getExercises();">Click to create a muscle-exercise relationship</h3>
       <div ng-show="ctrl.showDropdowns">
-        <h3>Muscle/group</h3>
-
-<!-- After choice is made allow muscle section to turn back on -->
-      <select ng-model="selectedMuscle">
-        <option ng-repeat="body in ctrl.body">{{ body.musclename }}</option>
-      </select>
-      <p>You selected {{ selectedMuscle }}</p>
-
-      <h3>Exercise</h3>
-
-<!-- After choice is made allow exercise section to turn back on -->
-    <select ng-model="selectedExercise">
-      <option ng-repeat="exercise in ctrl.exercise">{{ exercise.exercisename }}</option>
-    </select>
-    <p>You selected {{ selectedExercise }}</p>
-  </div>
-
+        <form ng-submit="ctrl.createGroup(newGroup)">
+          <select name="group[body_id]" ng-model="newGroup.body_id">
+            <option ng-repeat="body in ctrl.body" value="{{ body.id }}">{{ body.musclename }}</option>
+          </select>
+          <select name="group[exercise_id]" ng-model="newGroup.exercise_id">
+            <option ng-repeat="exercise in ctrl.exercise" value="{{ exercise.id }}">{{ exercise.exercisename }}</option>
+          </select>
+          <input type="text" placeholder="name" ng-model="newGroup.groupname"/>
+          <input type="submit">
+        </form>
+      </div>
     <a href="#" ng-click="ctrl.logout()">Log Out</a>
   </body>
 </html>
