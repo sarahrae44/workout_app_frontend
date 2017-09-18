@@ -6,9 +6,9 @@ app.controller('mainController', ['$http', function($http) {
   const controller = this;
   this.message = "controller works";
 
-  this.url = 'http://localhost:3000';
+  // this.url = 'http://localhost:3000';
 
-  // this.url = 'https://workout-app-api.herokuapp.com';
+  this.url = 'https://workout-app-api.herokuapp.com';
   this.muscle = {};
   // this.body.exercise = {};
   this.currentBody = {};
@@ -16,7 +16,7 @@ app.controller('mainController', ['$http', function($http) {
   this.muscleSection = true;
   this.exerciseSection = true;
   this.exerciseOption = false;
-  this.muslceOption = true;
+  // this.muslceOption = true;
 
 // ===================== User-related =========================
   this.user = {};
@@ -276,14 +276,14 @@ app.controller('mainController', ['$http', function($http) {
   this.group = {};
   this.currentGroup = {};
 
-// create exercise
+// create group
   this.createGroup = function(newGroup) {
     console.log('this works');
     $http({
       url: this.url + '/groups',
       method: 'POST',
-      data: { group: { groupname: newGroup.groupname, exercise_id: newGroup.exercise_id, body_id: newGroup.body_id,
-        // body: [newGroup.body], exercise: [newGroup.exercise]
+      data: { group: { groupname: newGroup.groupname, exercise_id: newGroup.exercise_id, body_id: newGroup.body_id
+        // ,body: [newGroup.body], exercise: [newGroup.exercise]
       }}
     }).then(function(response) {
       console.log(response);
