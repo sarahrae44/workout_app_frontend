@@ -51,24 +51,27 @@
     <!-- Bodies section -->
     <h4 ng-click="ctrl.getBodies()">Click to see muscle groups</h4>
     <div ng-repeat="body in ctrl.body track by $index">
-      <h3><a href="#" ng-click="showExercises = ! showExercises; showBodyImage = ! showBodyImage">{{ body.name }}</a>
+      <h3><a href="#" ng-click="showExercises = ! showExercises; showBodyImage = ! showBodyImage">{{ body.musclename }}</a>
       </h3>
+
+      <button ng-click="editBodies = ! editBodies; ctrl.editBody(body.id);">Edit {{ body.musclename }}</button><br />
 
       <!-- Edit body form -->
       <div ng-show="editBodies">
-        <form ng-submit="ctrl.updatedBody(ctrl.updatedBody)">
-          <input type="text" placeholder="text" ng-model="ctrl.updatedBody.name">
-          <input type="text" ng-model="ctrl.updatedBody.img" placeholder="image path">
-          <button type="submit">Confirm</button>
+        <form method="update">
+          <input type="text" placeholder="text" ng-model="ctrl.currentBody.musclename">
+          <input type="text" ng-model="ctrl.currentBody.img" placeholder="image path">
+          <button ng-click="ctrl.pushBodyEdit(); editBodies = ! editBodies;">Confirm</button>
         </form>
       </div>
       <!-- end of edit body form -->
 
-      <button ng-click="editBodies = ! editBodies; ctrl.editBody(body);">Edit {{ body.name }}</button><br />
+
         <form ng-submit="ctrl.deleteBody(body.id)" accept-charset="UTF-8" method="delete">
           <input name="_method" type="hidden" value="destroy"/>
-          <button>Delete {{ body.name }}</button>
+          <button>Delete {{ body.musclename }}</button>
         </form>
+
       <img ng-show="showBodyImage" src="{{ body.img }}">
       <div ng-show="showExercises" ng-repeat="exercise in body.exercises track by $index">
         <h4>{{ exercise.name }}</h4>
@@ -78,7 +81,7 @@
     </div>
     <h3>Add new muscle/group</h3>
     <form ng-submit="ctrl.createBody(newBody)">
-      <input type="text" ng-model="newBody.name" placeholder="name"/>
+      <input type="text" ng-model="newBody.musclename" placeholder="name"/>
       <input type="text" ng-model="newBody.img" placeholder="img path"/>
       <input type="submit">
     </form>
@@ -86,30 +89,31 @@
     <!-- Exercises section -->
     <h4 ng-click="ctrl.getExercises()">Click to see exercises</h4>
     <div ng-repeat="exercise in ctrl.exercise track by $index">
-      <h3><a href="#" ng-click="showMuscles = ! showMuscles">{{ exercise.name }}</a></h3>
+      <h3><a href="#" ng-click="showMuscles = ! showMuscles">{{ exercise.exercisename }}</a></h3>
+
+
+      <button ng-click="editExercises = ! editExercises; ctrl.editExercise(exercise.id);">Edit {{ exercise.exercisename }}</button><br />
 
       <!-- Edit exercise form -->
       <div ng-show="editExercises">
-        <form ng-submit="ctrl.updatedExercise(ctrl.updatedExercise)">
-          <input type="text" placeholder="text" ng-model="ctrl.updatedExercise.name">
-          <input type="text" ng-model="ctrl.updatedExercise.img" placeholder="image path">
-          <input type="text" placeholder="description" ng-model="ctrl.updatedExercise.desc">
-          <input type="text" ng-model="ctrl.updatedExercise.duration" placeholder="1 or 2">
-          <button type="submit">Confirm</button>
+        <form method="update">
+          <input type="text" placeholder="text" ng-model="ctrl.currentExercise.exercisename">
+          <input type="text" ng-model="ctrl.currentExercise.img" placeholder="image path">
+          <input type="text" placeholder="text" ng-model="ctrl.currentExercise.description">
+          <input type="text" ng-model="ctrl.currentExercise.duration" placeholder="1 or 2">
+          <button ng-click="ctrl.pushExerciseEdit(); editExercises = ! editExercises">Confirm</button>
         </form>
       </div>
-      <!-- end of edit exercise form -->
 
-      <button ng-click="editExercises = ! editExercises; ctrl.editExercise(exercise);">Edit {{ exercise.name }}</button><br />
         <form ng-submit="ctrl.deleteExercise(exercise.id)" accept-charset="UTF-8" method="delete">
           <input name="_method" type="hidden" value="destroy"/>
-          <button>Delete {{ exercise.name }}</button>
+          <button>Delete {{ exercise.exercisename }}</button>
         </form>
 
 
       <img src="{{ exercise.img }}">
       <div ng-show="showMuscles" ng-repeat="body in exercise.bodies track by $index">
-        <h4>{{ body.name }}</h4>
+        <h4>{{ body.musclename }}</h4>
         <img src="{{ body.img }}">
         <p>{{ body.desc }}</p>
       </div>
@@ -117,7 +121,7 @@
 
     <h3>Add new exercise</h3>
     <form ng-submit="ctrl.createExercise(newExercise)">
-      <input type="text" ng-model="newExercise.name" placeholder="name"/>
+      <input type="text" ng-model="newExercise.exercisename" placeholder="name"/>
       <input type="text" ng-model="newExercise.img" placeholder="img path"/>
       <input type="text" ng-model="newExercise.desc" placeholder="description"/>
       <input type="text" ng-model="newExercise.duration" placeholder="1 or 2"/>
