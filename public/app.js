@@ -116,13 +116,15 @@ app.controller('mainController', ['$http', function($http) {
 
   this.body = {};
   this.bodies = [];
+  this.editedBody = {};
+  this.currentBody = {};
 
   // create body
   this.createBody = function(newBody) {
     $http({
       url: this.url + '/bodies',
       method: 'POST',
-      data: { body: { name: newBody.name, img: newBody.img }}
+      data: { body: { musclename: newBody.musclename, img: newBody.img }}
     }).then(function(response) {
       console.log(response);
       this.body = response.data.body;
@@ -140,23 +142,47 @@ app.controller('mainController', ['$http', function($http) {
     })
   }
 
-  // edit body - NOT WORKING
 
-  this.updatedBody = function(updatedBody) {
-    // $http({
-    //   method: 'PUT',
-    //   url: this.url + '/bodies/' + this.body.id,
-    //   data: { body: { name: updatedBody.name, img: updatedBody.img }}
-    // }).then(function(response) {
-    //   this.body = response.data
-    //   // controller.name = ''
-    //   // controller.img = ''
-    //   // controller.currentBody = response.data;
-    // }, function(error){
-    //   console.log(error, 'body error');
-    // })
-    console.log(this.body.id);
+  this.updatedUser = function(username, password) {
+    $http({
+      method: 'PATCH',
+      headers: {
+        Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
+      },
+      url: this.url + '/users/' + this.user.id,
+      data: { user: { username: username, password: password }}
+    }).then(function(response) {
+      console.log(response);
+      console.log(response.data);
+      this.user = response.data;
+    }.bind(this));
   }
+
+  // edit body
+
+  this.editBody = function(id){
+      $http({
+        method: 'get',
+        url: this.url + '/bodies/' + id
+      }).then(function(response){
+        controller.currentBody = response.data;
+      }, function(error){
+        console.log(error,'body error')
+      })
+    };
+
+    this.pushBodyEdit = function(){
+      $http({
+        method: 'put',
+        url: this.url + '/bodies/' + this.currentBody.id,
+        data: this.currentBody
+      }).then(function(response){
+        console.log(response);
+        controller.getBodies();
+      }, function(error){
+        console.log(error, 'error from body edit');
+      })
+    };
 
   // delete body
   this.deleteBody = function(id) {
@@ -172,12 +198,15 @@ app.controller('mainController', ['$http', function($http) {
 
 // ===================== Exercise-related ==========================
 
+  this.exercise = {};
+  this.currentExercise = {};
+
 // create exercise
   this.createExercise = function(newExercise) {
     $http({
       url: this.url + '/exercises',
       method: 'POST',
-      data: { exercise: { name: newExercise.name, img: newExercise.img, desc: newExercise.desc, duration: newExercise.duration }}
+      data: { exercise: { exercisename: newExercise.exercisename, img: newExercise.img, desc: newExercise.desc, duration: newExercise.duration }}
     }).then(function(response) {
       console.log(response);
       this.exercise = response.data.exercise;
@@ -195,7 +224,34 @@ app.controller('mainController', ['$http', function($http) {
     })
   }
 
-  // delete body
+  // edit exercise
+
+  this.editExercise = function(id){
+      $http({
+        method: 'get',
+        url: this.url + '/exercises/' + id
+      }).then(function(response){
+        controller.currentExercise = response.data;
+      }, function(error){
+        console.log(error,'exercise error')
+      })
+    };
+
+    this.pushExerciseEdit = function(){
+      $http({
+        method: 'put',
+        url: this.url + '/exercises/' + this.currentExercise.id,
+        data: this.currentExercise
+      }).then(function(response){
+        console.log(response);
+        controller.getExercises();
+      }, function(error){
+        console.log(error, 'error from exercise edit');
+      })
+    };
+
+
+  // delete exercise
   this.deleteExercise = function(id) {
     $http({
       method: 'DELETE',
