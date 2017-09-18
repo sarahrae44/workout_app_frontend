@@ -49,11 +49,13 @@
     </div> -->
 
     <!-- Bodies section -->
-    <h4 ng-click="ctrl.getBodies()">Click to see muscle groups</h4>
-    <div ng-repeat="body in ctrl.body track by $index">
+    <h4 ng-click="ctrl.getBodies();">Click to see muscle groups</h4>
+
+
+
+    <div ng-repeat="body in ctrl.body track by $index" ng-show="ctrl.muscleSection">
       <h3><a href="#" ng-click="showExercises = ! showExercises; showBodyImage = ! showBodyImage">{{ body.musclename }}</a>
       </h3>
-
       <button ng-click="editBodies = ! editBodies; ctrl.editBody(body.id);">Edit {{ body.musclename }}</button><br />
 
       <!-- Edit body form -->
@@ -66,7 +68,6 @@
       </div>
       <!-- end of edit body form -->
 
-
         <form ng-submit="ctrl.deleteBody(body.id)" accept-charset="UTF-8" method="delete">
           <input name="_method" type="hidden" value="destroy"/>
           <button>Delete {{ body.musclename }}</button>
@@ -74,7 +75,7 @@
 
       <img ng-show="showBodyImage" src="{{ body.img }}">
       <div ng-show="showExercises" ng-repeat="exercise in body.exercises track by $index">
-        <h4>{{ exercise.name }}</h4>
+        <h4>{{ exercise.exercisename }}</h4>
         <img src="{{ exercise.img }}">
         <p>{{ exercise.desc }}</p>
       </div>
@@ -88,7 +89,7 @@
 
     <!-- Exercises section -->
     <h4 ng-click="ctrl.getExercises()">Click to see exercises</h4>
-    <div ng-repeat="exercise in ctrl.exercise track by $index">
+    <div ng-show="ctrl.exerciseSection" ng-repeat="exercise in ctrl.exercise track by $index">
       <h3><a href="#" ng-click="showMuscles = ! showMuscles">{{ exercise.exercisename }}</a></h3>
 
 
@@ -127,6 +128,25 @@
       <input type="text" ng-model="newExercise.duration" placeholder="1 or 2"/>
       <input type="submit">
     </form>
+
+      <h3 ng-click="ctrl.showDropdowns = ! ctrl.showDropdowns; ctrl.muscleSection = ! ctrl.muscleSection; ctrl.exerciseSection = ! ctrl.exerciseSection; ctrl.getBodies(); ctrl.getExercises();">Click to create a muscle-exercise relationship</h3>
+      <div ng-show="ctrl.showDropdowns">
+        <h3>Muscle/group</h3>
+
+<!-- After choice is made allow muscle section to turn back on -->
+      <select ng-model="selectedMuscle">
+        <option ng-repeat="body in ctrl.body">{{ body.musclename }}</option>
+      </select>
+      <p>You selected {{ selectedMuscle }}</p>
+
+      <h3>Exercise</h3>
+
+<!-- After choice is made allow exercise section to turn back on -->
+    <select ng-model="selectedExercise">
+      <option ng-repeat="exercise in ctrl.exercise">{{ exercise.exercisename }}</option>
+    </select>
+    <p>You selected {{ selectedExercise }}</p>
+  </div>
 
     <a href="#" ng-click="ctrl.logout()">Log Out</a>
   </body>
