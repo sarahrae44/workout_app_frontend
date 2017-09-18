@@ -6,9 +6,9 @@ app.controller('mainController', ['$http', function($http) {
   const controller = this;
   this.message = "controller works";
 
-  this.url = 'http://localhost:3000';
+  // this.url = 'http://localhost:3000';
 
-  // this.url = 'https://workout-app-api.herokuapp.com/', 'http://localhost:3000';
+  this.url = 'https://workout-app-api.herokuapp.com/';
   this.muscle = {};
   // this.body.exercise = {};
   this.currentBody = {};
