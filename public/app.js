@@ -15,8 +15,6 @@ app.controller('mainController', ['$http', function($http) {
   this.showDropdowns = false;
   this.muscleSection = true;
   this.exerciseSection = true;
-  // this.exerciseOption = false;
-  // this.muslceOption = true;
   this.registerModal = false;
   this.loginModal = false;
   this.accountDetails = false;
@@ -26,6 +24,12 @@ app.controller('mainController', ['$http', function($http) {
   this.showMuscleList = true;
   this.hideExerciseList = false;
   this.showExerciseList = true;
+  this.loggedIn = false;
+  this.showRegisterButton = true;
+  this.showLoginButton = true;
+  this.showGroupList = true;
+  this.hideGroupList = false;
+  this.showGroupDetails = false;
 
 // ===================== User-related =========================
   this.user = {};
@@ -41,6 +45,7 @@ app.controller('mainController', ['$http', function($http) {
     }).then(function(response) {
       console.log(response);
       this.user = response.data.user;
+      controller.registerModal = ! controller.registerModal;
     })
   }
 
@@ -65,7 +70,11 @@ app.controller('mainController', ['$http', function($http) {
       console.log('user?', this.user);
       console.log('username: ', userPass.username);
       console.log('password: ', userPass.password);
+      controller.loginModal = ! controller.loginModal;
+      controller.loggedIn = ! controller.loggedIn;
+      controller.accountDetails = ! controller.accountDetails;
     }.bind(this));
+
   }
 
 // get user
@@ -119,14 +128,6 @@ app.controller('mainController', ['$http', function($http) {
     }.bind(this));
   }
 
-  // $http({
-  //   method: 'GET',
-  //   url: 'http://localhost:3000/',
-  // }).then(response => console.log(response))
-  //   .catch(err => console.log(err));
-
-
-
  // ==================== End User-related =======================
 
 // ===================== Body-related ==========================
@@ -163,7 +164,6 @@ app.controller('mainController', ['$http', function($http) {
   }
 
   // edit body
-
   this.editBody = function(id){
       $http({
         method: 'get',
@@ -233,7 +233,6 @@ app.controller('mainController', ['$http', function($http) {
   }
 
   // edit exercise
-
   this.editExercise = function(id){
       $http({
         method: 'get',
@@ -275,7 +274,6 @@ app.controller('mainController', ['$http', function($http) {
 // ===================== Group-related ==========================
 
   this.group = {};
-  // this.currentGroup = {};
 
 // create group
   this.createGroup = function(newGroup) {
@@ -283,13 +281,24 @@ app.controller('mainController', ['$http', function($http) {
     $http({
       url: this.url + '/groups',
       method: 'POST',
-      data: { group: { groupname: newGroup.groupname, exercise_id: newGroup.exercise_id, body_id: newGroup.body_id
-        // ,body: [newGroup.body], exercise: [newGroup.exercise]
-      }}
+      data: { group: { groupname: newGroup.groupname, exercise_id: newGroup.exercise_id, body_id: newGroup.body_id }}
     }).then(function(response) {
       console.log(response);
       this.group = response.data.group;
       controller.reload();
+    })
+  }
+
+  // get all groups
+  this.getGroups = function() {
+    $http({
+      url: this.url + '/groups',
+      method: 'GET'
+    }).then(function(response) {
+      console.log(response.data);
+      controller.group = response.data;
+      controller.hideGroupList = ! controller.hideGroupList;
+      controller.showGroupList = ! controller.showGroupList;
     })
   }
 
