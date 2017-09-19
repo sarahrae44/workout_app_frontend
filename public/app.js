@@ -6,9 +6,9 @@ app.controller('mainController', ['$http', function($http) {
   const controller = this;
   this.message = "controller works";
 
-  // this.url = 'http://localhost:3000';
+  this.url = 'http://localhost:3000';
 
-  this.url = 'https://workout-app-api.herokuapp.com';
+  // this.url = 'https://workout-app-api.herokuapp.com';
   this.muscle = {};
   // this.body.exercise = {};
   this.currentBody = {};
@@ -136,6 +136,7 @@ app.controller('mainController', ['$http', function($http) {
     }).then(function(response) {
       console.log(response);
       this.body = response.data.body;
+      controller.getBodies();
     })
   }
 
@@ -148,22 +149,6 @@ app.controller('mainController', ['$http', function($http) {
       console.log(response.data);
       controller.body = response.data;
     })
-  }
-
-
-  this.updatedUser = function(username, password) {
-    $http({
-      method: 'PATCH',
-      headers: {
-        Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
-      },
-      url: this.url + '/users/' + this.user.id,
-      data: { user: { username: username, password: password }}
-    }).then(function(response) {
-      console.log(response);
-      console.log(response.data);
-      this.user = response.data;
-    }.bind(this));
   }
 
   // edit body
@@ -199,6 +184,7 @@ app.controller('mainController', ['$http', function($http) {
       url: this.url + '/bodies/' + id
     }).then(function(response) {
       console.log(response);
+      controller.getBodies();
     });
   }
 
@@ -218,6 +204,7 @@ app.controller('mainController', ['$http', function($http) {
     }).then(function(response) {
       console.log(response);
       this.exercise = response.data.exercise;
+      controller.getExercises();
     })
   }
 
@@ -266,6 +253,7 @@ app.controller('mainController', ['$http', function($http) {
       url: this.url + '/exercises/' + id
     }).then(function(response) {
       console.log(response);
+      controller.getExercises();
     });
   }
 
@@ -274,7 +262,7 @@ app.controller('mainController', ['$http', function($http) {
 // ===================== Group-related ==========================
 
   this.group = {};
-  this.currentGroup = {};
+  // this.currentGroup = {};
 
 // create group
   this.createGroup = function(newGroup) {
