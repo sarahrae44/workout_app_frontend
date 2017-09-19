@@ -30,6 +30,13 @@ app.controller('mainController', ['$http', function($http) {
   this.showGroupList = true;
   this.hideGroupList = false;
   this.showGroupDetails = false;
+  this.adminLogin = false;
+  this.muslesVisible = false;
+  this.exercisesVisible = false;
+  this.groupsVisible = false;
+  this.muscleHeader = true;
+  this.errorModal = false;
+
 
 // ===================== User-related =========================
   this.user = {};
@@ -62,9 +69,16 @@ app.controller('mainController', ['$http', function($http) {
       this.user = response.data.user;
       localStorage.setItem('token', JSON.stringify(response.data.token));
       if (this.user === undefined){
-        this.loggedin = false
+        this.loggedin = false;
+        this.loginError();
       } else {
         this.loggedin = true;
+        if (userPass.username === "waLogin"){
+          console.log(userPass.username);
+          this.adminLogin = true
+        } else {
+          this.adminLogin = false;
+        }
       }
       console.log('logged in? ', this.loggedin);
       console.log('user?', this.user);
@@ -160,6 +174,7 @@ app.controller('mainController', ['$http', function($http) {
       controller.body = response.data;
       controller.hideMuscleList = ! controller.hideMuscleList;
       controller.showMuscleList = ! controller.showMuscleList;
+      controller.musclesVisible = ! controller.musclesVisible;
     })
   }
 
@@ -229,6 +244,7 @@ app.controller('mainController', ['$http', function($http) {
       controller.exercise = response.data;
       controller.hideExerciseList = ! controller.hideExerciseList;
       controller.showExerciseList = ! controller.showExerciseList;
+      controller.exercisesVisible = ! controller.exercisesVisible;
     })
   }
 
@@ -285,7 +301,7 @@ app.controller('mainController', ['$http', function($http) {
     }).then(function(response) {
       console.log(response);
       this.group = response.data.group;
-      controller.reload();
+      controller.getGroups();
     })
   }
 
@@ -299,10 +315,20 @@ app.controller('mainController', ['$http', function($http) {
       controller.group = response.data;
       controller.hideGroupList = ! controller.hideGroupList;
       controller.showGroupList = ! controller.showGroupList;
+      controller.groupsVisible = ! controller.groupsVisible;
     })
   }
 
 // ===================== End Group-related ==========================
+
+  this.loginError = function(){
+    this.errorModal = !this.errorModal;
+    // this.closeErrorForm();
+  }
+
+  this.closeErrorForm = function(){
+    this.errorModal = !this.errorModal;
+  }
 
   this.reload = function() {
     location.reload();
