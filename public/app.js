@@ -6,17 +6,26 @@ app.controller('mainController', ['$http', function($http) {
   const controller = this;
   this.message = "controller works";
 
-  // this.url = 'http://localhost:3000';
+  this.url = 'http://localhost:3000';
 
-  this.url = 'https://workout-app-api.herokuapp.com';
+  // this.url = 'https://workout-app-api.herokuapp.com';
   this.muscle = {};
   // this.body.exercise = {};
   this.currentBody = {};
   this.showDropdowns = false;
   this.muscleSection = true;
   this.exerciseSection = true;
-  this.exerciseOption = false;
+  // this.exerciseOption = false;
   // this.muslceOption = true;
+  this.registerModal = false;
+  this.loginModal = false;
+  this.accountDetails = false;
+  this.addNewMuscle = false;
+  this.addNewExercise = false;
+  this.hideMuscleList = false;
+  this.showMuscleList = true;
+  this.hideExerciseList = false;
+  this.showExerciseList = true;
 
 // ===================== User-related =========================
   this.user = {};
@@ -136,6 +145,7 @@ app.controller('mainController', ['$http', function($http) {
     }).then(function(response) {
       console.log(response);
       this.body = response.data.body;
+      controller.getBodies();
     })
   }
 
@@ -147,23 +157,9 @@ app.controller('mainController', ['$http', function($http) {
     }).then(function(response) {
       console.log(response.data);
       controller.body = response.data;
+      controller.hideMuscleList = ! controller.hideMuscleList;
+      controller.showMuscleList = ! controller.showMuscleList;
     })
-  }
-
-
-  this.updatedUser = function(username, password) {
-    $http({
-      method: 'PATCH',
-      headers: {
-        Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
-      },
-      url: this.url + '/users/' + this.user.id,
-      data: { user: { username: username, password: password }}
-    }).then(function(response) {
-      console.log(response);
-      console.log(response.data);
-      this.user = response.data;
-    }.bind(this));
   }
 
   // edit body
@@ -199,6 +195,7 @@ app.controller('mainController', ['$http', function($http) {
       url: this.url + '/bodies/' + id
     }).then(function(response) {
       console.log(response);
+      controller.getBodies();
     });
   }
 
@@ -218,6 +215,7 @@ app.controller('mainController', ['$http', function($http) {
     }).then(function(response) {
       console.log(response);
       this.exercise = response.data.exercise;
+      controller.getExercises();
     })
   }
 
@@ -229,6 +227,8 @@ app.controller('mainController', ['$http', function($http) {
     }).then(function(response) {
       console.log(response.data);
       controller.exercise = response.data;
+      controller.hideExerciseList = ! controller.hideExerciseList;
+      controller.showExerciseList = ! controller.showExerciseList;
     })
   }
 
@@ -266,6 +266,7 @@ app.controller('mainController', ['$http', function($http) {
       url: this.url + '/exercises/' + id
     }).then(function(response) {
       console.log(response);
+      controller.getExercises();
     });
   }
 
@@ -274,7 +275,7 @@ app.controller('mainController', ['$http', function($http) {
 // ===================== Group-related ==========================
 
   this.group = {};
-  this.currentGroup = {};
+  // this.currentGroup = {};
 
 // create group
   this.createGroup = function(newGroup) {
@@ -288,7 +289,13 @@ app.controller('mainController', ['$http', function($http) {
     }).then(function(response) {
       console.log(response);
       this.group = response.data.group;
+      controller.reload();
     })
   }
 
+// ===================== End Group-related ==========================
+
+  this.reload = function() {
+    location.reload();
+    }
 }]);

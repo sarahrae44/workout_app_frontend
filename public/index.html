@@ -2,46 +2,54 @@
 <html ng-app="workout_app">
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
     <script type="text/javascript" src="app.js"></script>
-    <link rel="stylesheet" href="style.css">
     <title>Workout generator</title>
   </head>
   <body ng-controller="mainController as ctrl">
 
     <!-- Register form -->
-    <h3>Register</h3>
-    <form ng-submit="ctrl.createUser(userPass)">
-      <input type="text" ng-model="userPass.username" placeholder="Username"/>
-      <input type="password" ng-model="userPass.password" placeholder="Password"/>
-      <input type="submit">
-    </form>
+    <div ng-show="registerModal">
+      <h3>Register</h3>
+      <form ng-submit="ctrl.createUser(userPass)">
+        <input type="text" ng-model="userPass.username" placeholder="Username"/>
+        <input type="password" ng-model="userPass.password" placeholder="Password"/>
+        <input type="submit">
+      </form>
+    </div>
 
     <!-- Login form -->
-    <h3>Log In</h3>
-    <form ng-submit="ctrl.login(userPass)">
-      <input type="text" ng-model="userPass.username" placeholder="username"/>
-      <input type="password" ng-model="userPass.password" placeholder="password"/>
-      <input type="submit"/>
-    </form>
+    <div ng-show="loginModal">
+      <h3>Log In</h3>
+      <form ng-submit="ctrl.login(userPass)">
+        <input type="text" ng-model="userPass.username" placeholder="username"/>
+        <input type="password" ng-model="userPass.password" placeholder="password"/>
+        <input type="submit"/>
+      </form>
+      <p>Logged in username: {{ ctrl.user.username }} </p>
+      <a href="#" ng-click="ctrl.logout()">Log Out</a>
+    </div>
 
     <!-- Edit form -->
-    <h3>Edit User</h3>
-    <form ng-submit="ctrl.updatedUser(ctrl.updatedUser.username, ctrl.updatedUser.password)">
-      <input type="text" placeholder="{{ ctrl.userPass.username }}" ng-model="ctrl.updatedUser.username">
-      <input type="password" ng-model="ctrl.updatedUser.password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;">
-      <button type="submit">Confirm</button>
-    </form>
+    <div ng-show="accountDetails">
+      <h3>Edit User</h3>
+      <form ng-submit="ctrl.updatedUser(ctrl.updatedUser.username, ctrl.updatedUser.password)">
+        <input type="text" placeholder="{{ ctrl.userPass.username }}" ng-model="ctrl.updatedUser.username">
+        <input type="password" ng-model="ctrl.updatedUser.password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;">
+        <button type="submit">Confirm</button>
+      </form>
 
     <!-- Delete user button -->
-    <form ng-submit="ctrl.deleteUser(userPass)" accept-charset="UTF-8" action="/users/1" method="delete">
-      <input name="_method" type="hidden" value="destroy"/>
-      <button>Delete User</button>
-    </form>
+      <form ng-submit="ctrl.deleteUser(userPass)" accept-charset="UTF-8" action="/users/1" method="delete">
+        <input name="_method" type="hidden" value="destroy"/>
+        <button>Delete User</button>
+      </form>
+    </div>
+
 
     <h3>Workout home page</h3>
     <!-- {{ ctrl.message }} -->
-    <p>Logged in username: {{ ctrl.user.username }} </p>
     <!-- <h4 ng-click="ctrl.getUsers()">Click to see secret stuff</h4>
     <div> {{ ctrl.error }} </div>
     <div ng-repeat="user in ctrl.users">
@@ -49,7 +57,8 @@
     </div> -->
 
     <!-- Bodies section -->
-    <h4 ng-click="ctrl.getBodies();">Click to see muscle groups</h4>
+    <h4 ng-click="ctrl.getBodies();" ng-show="ctrl.showMuscleList">Click to see muscle groups</h4>
+    <h4 ng-click="ctrl.reload()" ng-show="ctrl.hideMuscleList">Hide muscle groups</h4>
 
 
 
@@ -80,15 +89,22 @@
         <p>{{ exercise.desc }}</p>
       </div>
     </div>
-    <h3>Add new muscle/group</h3>
-    <form ng-submit="ctrl.createBody(newBody)">
-      <input type="text" ng-model="newBody.musclename" placeholder="name"/>
-      <input type="text" ng-model="newBody.img" placeholder="img path"/>
-      <input type="submit">
-    </form>
+
+    <div ng-click="ctrl.addNewMuscle = ! ctrl.addNewMuscle">
+      <h3>Add new muscle/group</h3>
+    </div>
+      <div ng-show="ctrl.addNewMuscle">
+        <form ng-submit="ctrl.createBody(newBody)">
+          <input type="text" ng-model="newBody.musclename" placeholder="name"/>
+          <input type="text" ng-model="newBody.img" placeholder="img path"/>
+          <input type="submit">
+        </form>
+      </div>
 
     <!-- Exercises section -->
-    <h4 ng-click="ctrl.getExercises()">Click to see exercises</h4>
+
+    <h4 ng-click="ctrl.getExercises()" ng-show="ctrl.showExerciseList">Click to see exercises</h4>
+    <h4 ng-click="ctrl.reload()" ng-show="ctrl.hideExerciseList">Hide exercises</h4>
     <div ng-show="ctrl.exerciseSection" ng-repeat="exercise in ctrl.exercise track by $index">
       <h3><a href="#" ng-click="showMuscles = ! showMuscles">{{ exercise.exercisename }}</a></h3>
 
@@ -120,20 +136,26 @@
       </div>
     </div>
 
-    <h3>Add new exercise</h3>
-    <form ng-submit="ctrl.createExercise(newExercise)">
-      <input type="text" ng-model="newExercise.exercisename" placeholder="name"/>
-      <input type="text" ng-model="newExercise.img" placeholder="img path"/>
-      <input type="text" ng-model="newExercise.desc" placeholder="description"/>
-      <input type="text" ng-model="newExercise.duration" placeholder="1 or 2"/>
-      <input type="submit">
-    </form>
+    <div ng-click="ctrl.addNewExercise = ! ctrl.addNewExercise">
+      <h3>Add new exercise</h3>
+    </div>
+    <div ng-show="ctrl.addNewExercise">
+      <form ng-submit="ctrl.createExercise(newExercise)">
+        <input type="text" ng-model="newExercise.exercisename" placeholder="name"/>
+        <input type="text" ng-model="newExercise.img" placeholder="img path"/>
+        <input type="text" ng-model="newExercise.desc" placeholder="description"/>
+        <input type="text" ng-model="newExercise.duration" placeholder="1 or 2"/>
+        <input type="submit">
+      </form>
+    </div>
 
-      <h3 ng-click="ctrl.showDropdowns = ! ctrl.showDropdowns; ctrl.muscleSection = ! ctrl.muscleSection; ctrl.exerciseSection = ! ctrl.exerciseSection; ctrl.getBodies(); ctrl.getExercises();">Click to create a muscle-exercise relationship</h3>
+    <div ng-click="ctrl.showDropdowns = ! ctrl.showDropdowns; ctrl.muscleSection = ! ctrl.muscleSection; ctrl.exerciseSection = ! ctrl.exerciseSection; ctrl.getBodies(); ctrl.getExercises();">
+      <h3>Click to create a muscle-exercise relationship</h3>
+    </div>
       <div ng-show="ctrl.showDropdowns">
         <form ng-submit="ctrl.createGroup(newGroup)">
           <select name="group[body_id]" ng-model="newGroup.body_id">
-            <option ng-repeat="body in ctrl.body" value="{{ body.id }}">{{ body.musclename }}</option>
+            <option ng-repeat="body in ctrl.body track by $index" value="{{ body.id }}">{{ body.musclename }}</option>
           </select>
           <select name="group[exercise_id]" ng-model="newGroup.exercise_id">
             <option ng-repeat="exercise in ctrl.exercise" value="{{ exercise.id }}">{{ exercise.exercisename }}</option>
@@ -142,6 +164,5 @@
           <input type="submit">
         </form>
       </div>
-    <a href="#" ng-click="ctrl.logout()">Log Out</a>
   </body>
 </html>
