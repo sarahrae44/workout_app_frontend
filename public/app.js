@@ -15,8 +15,17 @@ app.controller('mainController', ['$http', function($http) {
   this.showDropdowns = false;
   this.muscleSection = true;
   this.exerciseSection = true;
-  this.exerciseOption = false;
+  // this.exerciseOption = false;
   // this.muslceOption = true;
+  this.registerModal = false;
+  this.loginModal = false;
+  this.accountDetails = false;
+  this.addNewMuscle = false;
+  this.addNewExercise = false;
+  this.hideMuscleList = false;
+  this.showMuscleList = true;
+  this.hideExerciseList = false;
+  this.showExerciseList = true;
 
 // ===================== User-related =========================
   this.user = {};
@@ -148,6 +157,8 @@ app.controller('mainController', ['$http', function($http) {
     }).then(function(response) {
       console.log(response.data);
       controller.body = response.data;
+      controller.hideMuscleList = ! controller.hideMuscleList;
+      controller.showMuscleList = ! controller.showMuscleList;
     })
   }
 
@@ -216,6 +227,8 @@ app.controller('mainController', ['$http', function($http) {
     }).then(function(response) {
       console.log(response.data);
       controller.exercise = response.data;
+      controller.hideExerciseList = ! controller.hideExerciseList;
+      controller.showExerciseList = ! controller.showExerciseList;
     })
   }
 
@@ -276,7 +289,13 @@ app.controller('mainController', ['$http', function($http) {
     }).then(function(response) {
       console.log(response);
       this.group = response.data.group;
+      controller.reload();
     })
   }
 
+// ===================== End Group-related ==========================
+
+  this.reload = function() {
+    location.reload();
+    }
 }]);
