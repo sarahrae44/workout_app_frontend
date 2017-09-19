@@ -6,9 +6,9 @@ app.controller('mainController', ['$http', function($http) {
   const controller = this;
   this.message = "controller works";
 
-  // this.url = 'http://localhost:3000';
+  this.url = 'http://localhost:3000';
 
-  this.url = 'https://workout-app-api.herokuapp.com';
+  // this.url = 'https://workout-app-api.herokuapp.com';
   this.muscle = {};
   // this.body.exercise = {};
   this.currentBody = {};
@@ -317,6 +317,17 @@ app.controller('mainController', ['$http', function($http) {
       controller.showGroupList = ! controller.showGroupList;
       controller.groupsVisible = ! controller.groupsVisible;
     })
+  }
+
+  // delete group
+  this.deleteGroup = function(id) {
+    $http({
+      method: 'DELETE',
+      url: this.url + '/groups/' + id
+    }).then(function(response) {
+      console.log(response);
+      controller.getGroups();
+    });
   }
 
 // ===================== End Group-related ==========================
