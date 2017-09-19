@@ -9,8 +9,11 @@
   </head>
   <body ng-controller="mainController as ctrl">
 
+    <h3>Workout home page</h3>
+    <h3 ng-click="ctrl.loginModal = ! ctrl.loginModal; ctrl.showRegisterButton = ! ctrl.showRegisterButton; ctrl.showLoginButton = ! ctrl.showLoginButton;" ng-show="ctrl.showLoginButton">Login</h3>
+    <h3 ng-click="ctrl.registerModal = ! ctrl.registerModal; ctrl.showRegisterButton = ! ctrl.showRegisterButton; ctrl.showLoginButton = ! ctrl.showLoginButton;" ng-show="ctrl.showRegisterButton">Register</h3>
     <!-- Register form -->
-    <div ng-show="registerModal">
+    <div ng-show="ctrl.registerModal">
       <h3>Register</h3>
       <form ng-submit="ctrl.createUser(userPass)">
         <input type="text" ng-model="userPass.username" placeholder="Username"/>
@@ -20,19 +23,21 @@
     </div>
 
     <!-- Login form -->
-    <div ng-show="loginModal">
+    <div ng-show="ctrl.loginModal">
       <h3>Log In</h3>
       <form ng-submit="ctrl.login(userPass)">
         <input type="text" ng-model="userPass.username" placeholder="username"/>
         <input type="password" ng-model="userPass.password" placeholder="password"/>
         <input type="submit"/>
       </form>
+    </div>
+    <div ng-show="ctrl.loggedIn">
       <p>Logged in username: {{ ctrl.user.username }} </p>
       <a href="#" ng-click="ctrl.logout()">Log Out</a>
     </div>
 
     <!-- Edit form -->
-    <div ng-show="accountDetails">
+    <div ng-show="ctrl.accountDetails">
       <h3>Edit User</h3>
       <form ng-submit="ctrl.updatedUser(ctrl.updatedUser.username, ctrl.updatedUser.password)">
         <input type="text" placeholder="{{ ctrl.userPass.username }}" ng-model="ctrl.updatedUser.username">
@@ -48,7 +53,6 @@
     </div>
 
 
-    <h3>Workout home page</h3>
     <!-- {{ ctrl.message }} -->
     <!-- <h4 ng-click="ctrl.getUsers()">Click to see secret stuff</h4>
     <div> {{ ctrl.error }} </div>
@@ -65,6 +69,13 @@
     <div ng-repeat="body in ctrl.body track by $index" ng-show="ctrl.muscleSection">
       <h3><a href="#" ng-click="showExercises = ! showExercises; showBodyImage = ! showBodyImage">{{ body.musclename }}</a>
       </h3>
+      <img ng-show="showBodyImage" src="{{ body.img }}">
+      <div ng-show="showExercises" ng-repeat="exercise in body.exercises track by $index">
+        <h4>{{ exercise.exercisename }}</h4>
+        <img src="{{ exercise.img }}">
+        <p>{{ exercise.desc }}</p>
+      </div>
+
       <button ng-click="editBodies = ! editBodies; ctrl.editBody(body.id);">Edit {{ body.musclename }}</button><br />
 
       <!-- Edit body form -->
@@ -82,12 +93,7 @@
           <button>Delete {{ body.musclename }}</button>
         </form>
 
-      <img ng-show="showBodyImage" src="{{ body.img }}">
-      <div ng-show="showExercises" ng-repeat="exercise in body.exercises track by $index">
-        <h4>{{ exercise.exercisename }}</h4>
-        <img src="{{ exercise.img }}">
-        <p>{{ exercise.desc }}</p>
-      </div>
+
     </div>
 
     <div ng-click="ctrl.addNewMuscle = ! ctrl.addNewMuscle">
@@ -149,6 +155,7 @@
       </form>
     </div>
 
+    <!-- Groups section -->
     <div ng-click="ctrl.showDropdowns = ! ctrl.showDropdowns; ctrl.muscleSection = ! ctrl.muscleSection; ctrl.exerciseSection = ! ctrl.exerciseSection; ctrl.getBodies(); ctrl.getExercises();">
       <h3>Click to create a muscle-exercise relationship</h3>
     </div>
@@ -164,5 +171,20 @@
           <input type="submit">
         </form>
       </div>
+
+      <h4 ng-click="ctrl.getGroups();" ng-show="ctrl.showGroupList">Click to see groups</h4>
+      <h4 ng-click="ctrl.reload()" ng-show="ctrl.hideGroupList">Hide groups</h4>
+
+      <div ng-repeat="group in ctrl.group track by $index">
+        <h3><a href="#" ng-click="showGroupDetails = ! showGroupDetails">{{ group.groupname }}</a></h3>
+
+        <div ng-show="showGroupDetails">
+          <h4>{{ group.body.musclename }}</h4>
+          <h4>{{ group.exercise.exercisename }}</h4>
+          <p>{{ group.exercise.desc }}</p>
+        </div>
+      </div>
+
+
   </body>
 </html>
