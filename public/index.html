@@ -170,6 +170,10 @@
             <h4>{{ group.exercise.exercisename }}</h4>
             <p>{{ group.exercise.desc }}</p>
           </div>
+          <form ng-submit="ctrl.deleteGroup(group.id)" accept-charset="UTF-8" method="delete">
+            <input name="_method" type="hidden" value="destroy"/>
+            <button ng-show="ctrl.adminLogin">Delete {{ group.groupname }}</button>
+          </form>
         </div>
       </div>
 
@@ -189,6 +193,26 @@
           </form>
         </div>
 
+        <!-- <button ng-show="ctrl.adminLogin" ng-click="editBodies = ! editBodies; ctrl.editBody(body.id);">Edit {{ body.musclename }}</button><br /> -->
+
+        <!-- Edit group form -->
+        <!-- <div ng-show="editGroups">
+          <form method="update">
+            <input type="text" placeholder="text" ng-model="ctrl.currentGroup.groupname">
+            <input type="text" ng-model="ctrl.currentBody.img" placeholder="image path">
+            <button ng-click="ctrl.pushBodyEdit(); editBodies = ! editBodies;">Confirm</button>
+          </form>
+        </div> -->
+        <!-- end of edit group form -->
+
+
+
+
+        <!-- <h1>Find a workout by body group</h1>
+        <input placeholder = "Search Body Groups">
+                <div ng-repeat="groupname in ctrl.group | filter:searchText">
+                  <h2>{{group.groupname}}</h2>
+                </div> -->
 
   </body>
 </html>

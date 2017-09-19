@@ -319,6 +319,17 @@ app.controller('mainController', ['$http', function($http) {
     })
   }
 
+  // delete group
+  this.deleteGroup = function(id) {
+    $http({
+      method: 'DELETE',
+      url: this.url + '/groups/' + id
+    }).then(function(response) {
+      console.log(response);
+      controller.getGroups();
+    });
+  }
+
 // ===================== End Group-related ==========================
 
   this.loginError = function(){
