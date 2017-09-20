@@ -68,8 +68,8 @@
     </div> -->
 
     <!-- Bodies section -->
-    <h4 ng-click="ctrl.getBodies();" ng-show="ctrl.showMuscleList;">Click to see muscle groups</h4>
-    <h4 ng-show="ctrl.hideMuscleList" ng-click="ctrl.musclesVisible = ! ctrl.musclesVisible; ctrl.showMuscleList = ! ctrl.showMuscleList; ctrl.hideMuscleList = ! ctrl.hideMuscleList">Hide muscle groups</h4>
+    <h4 ng-click="ctrl.getBodies();" ng-show="ctrl.showMuscleList;">Click to see muscles</h4>
+    <h4 ng-show="ctrl.hideMuscleList" ng-click="ctrl.musclesVisible = ! ctrl.musclesVisible; ctrl.showMuscleList = ! ctrl.showMuscleList; ctrl.hideMuscleList = ! ctrl.hideMuscleList">Hide muscles</h4>
 
     <div ng-show="ctrl.musclesVisible">
       <div ng-repeat="body in ctrl.body track by $index" ng-show="ctrl.muscleSection">
@@ -136,6 +136,7 @@
             <button ng-show="ctrl.adminLogin">Delete {{ exercise.exercisename }}</button>
           </form>
         <img src="{{ exercise.img }}">
+        <p>{{ exercise.desc }}</p>
         <div ng-show="showMuscles" ng-repeat="body in exercise.bodies track by $index">
           <h4>{{ body.musclename }}</h4>
           <img src="{{ body.img }}">
@@ -157,41 +158,110 @@
       </form>
     </div>
 
-    <!-- Groups section -->
+    <!-- Muscle Groups section -->
 
-      <h4 ng-click="ctrl.getGroups();" ng-show="ctrl.showGroupList">Click to see groups</h4>
-      <h4 ng-show="ctrl.hideGroupList" ng-click="ctrl.groupsVisible = ! ctrl.groupsVisible; ctrl.showGroupList = ! ctrl.showGroupList; ctrl.hideGroupList = ! ctrl.hideGroupList">Hide groups</h4>
-      <div ng-show="ctrl.groupsVisible">
-        <div ng-repeat="group in ctrl.group track by $index">
-          <h3><a href="#" ng-click="showGroupDetails = ! showGroupDetails">{{ group.groupname }}</a></h3>
+      <!-- <h4 ng-click="ctrl.getMuscleGroups()" ng-show="ctrl.showMuscleGroupList">Click to see muscle groups</h4>
+      <h4 ng-show="ctrl.hideMuscleGroupList" ng-click="ctrl.muscleGroupsVisible = ! ctrl.muscleGroupsVisible; ctrl.showMuscleGroupList = ! ctrl.showMuscleGroupList; ctrl.hideMuscleGroupList = ! ctrl.hideMuscleGroupList;">Hide muscle groups</h4>
+      <div ng-show="ctrl.muscleGroupsVisible;">
+        <div ng-show="ctrl.muscleGroupSection" ng-repeat="musclegroup in ctrl.musclegroup track by $index">
+          <h3>{{ musclegroup.muscleGroupName }}</h3>
+          <h3>{{ musclegroup.groups }}</h3>
+          <h3>{{ musclegroup.groups[0].body_id }}</h3> -->
 
-          <div ng-show="showGroupDetails">
-            <h4>{{ group.body.musclename }}</h4>
-            <h4>{{ group.exercise.exercisename }}</h4>
-            <p>{{ group.exercise.desc }}</p>
-          </div>
-          <form ng-submit="ctrl.deleteGroup(group.id)" accept-charset="UTF-8" method="delete">
-            <input name="_method" type="hidden" value="destroy"/>
-            <button ng-show="ctrl.adminLogin">Delete {{ group.groupname }}</button>
-          </form>
-        </div>
+
+          <!-- <button ng-show="ctrl.adminLogin" ng-click="editBodies = ! editBodies; ctrl.editBody(body.id);">Edit {{ body.musclename }}</button><br /> -->
+
+          <!-- Edit body form -->
+          <!-- <div ng-show="editBodies">
+            <form method="update">
+              <input type="text" placeholder="text" ng-model="ctrl.currentBody.musclename">
+              <input type="text" ng-model="ctrl.currentBody.img" placeholder="image path">
+              <button ng-click="ctrl.pushBodyEdit(); editBodies = ! editBodies;">Confirm</button>
+            </form>
+          </div> -->
+          <!-- end of edit body form -->
+
+            <!-- <form ng-submit="ctrl.deleteBody(body.id)" accept-charset="UTF-8" method="delete">
+              <input name="_method" type="hidden" value="destroy"/>
+              <button ng-show="ctrl.adminLogin">Delete {{ body.musclename }}</button>
+            </form> -->
+        <!-- </div>
       </div>
 
-      <div ng-click="ctrl.showDropdowns = ! ctrl.showDropdowns; ctrl.muscleSection = ! ctrl.muscleSection; ctrl.exerciseSection = ! ctrl.exerciseSection; ctrl.getBodies(); ctrl.getExercises();">
-        <h3 ng-show="ctrl.adminLogin">Create a muscle-exercise relationship</h3>
+      <div ng-show="ctrl.adminLogin" ng-click="ctrl.addNewMuscleGroup = ! ctrl.addNewMuscleGroup;">
+        <h3>Add new muscle group</h3>
       </div>
-        <div ng-show="ctrl.showDropdowns">
-          <form ng-submit="ctrl.createGroup(newGroup)">
-            <select name="group[body_id]" ng-model="newGroup.body_id">
-              <option ng-repeat="body in ctrl.body track by $index" value="{{ body.id }}">{{ body.musclename }}</option>
-            </select>
-            <select name="group[exercise_id]" ng-model="newGroup.exercise_id">
-              <option ng-repeat="exercise in ctrl.exercise" value="{{ exercise.id }}">{{ exercise.exercisename }}</option>
-            </select>
-            <input type="text" placeholder="name" ng-model="newGroup.groupname"/>
+        <div ng-show="ctrl.addNewMuscleGroup;">
+          <form ng-submit="ctrl.createMuscleGroup(newMuscleGroup)">
+            <input type="text" ng-model="newMuscleGroup.muscleGroupName" placeholder="name"/>
             <input type="submit">
           </form>
-        </div>
+        </div> -->
+
+        <!-- Groups section -->
+
+          <h4 ng-click="ctrl.getGroups();" ng-show="ctrl.showGroupList">Click to see groups</h4>
+          <h4 ng-show="ctrl.hideGroupList" ng-click="ctrl.groupsVisible = ! ctrl.groupsVisible; ctrl.showGroupList = ! ctrl.showGroupList; ctrl.hideGroupList = ! ctrl.hideGroupList">Hide groups</h4>
+          <div ng-show="ctrl.groupsVisible">
+            <div ng-repeat="group in ctrl.group track by $index">
+              <h3><a href="#" ng-click="showGroupDetails = ! showGroupDetails">{{ group.groupname }}</a></h3>
+
+              <div ng-show="showGroupDetails">
+                <h4>{{ group.body.musclename }}</h4>
+                <h4>{{ group.exercise.exercisename }}</h4>
+                <p>{{ group.exercise.desc }}</p>
+                <p>{{ group.exercise.duration }}</p>
+
+              </div>
+              <form ng-submit="ctrl.deleteGroup(group.id)" accept-charset="UTF-8" method="delete">
+                <input name="_method" type="hidden" value="destroy"/>
+                <button ng-show="ctrl.adminLogin">Delete {{ group.groupname }}</button>
+              </form>
+            </div>
+          </div>
+
+          <div ng-click="ctrl.showDropdowns = ! ctrl.showDropdowns; ctrl.muscleSection = ! ctrl.muscleSection; ctrl.exerciseSection = ! ctrl.exerciseSection; ctrl.muscleGroupSection = ! ctrl.muscleGroupSection; ctrl.getBodies(); ctrl.getExercises();">
+            <h3 ng-show="ctrl.adminLogin">Add a new group</h3>
+          </div>
+            <div ng-show="ctrl.showDropdowns">
+              <form ng-submit="ctrl.createGroup(newGroup)">
+                <select name="group[body_id]" ng-model="newGroup.body_id">
+                  <option ng-repeat="body in ctrl.body track by $index" value="{{ body.id }}">{{ body.musclename }}</option>
+                </select>
+                <select name="group[exercise_id]" ng-model="newGroup.exercise_id">
+                  <option ng-repeat="exercise in ctrl.exercise" value="{{ exercise.id }}">{{ exercise.exercisename }}</option>
+                </select>
+                <!-- <select name="group[muscle_group_id]" ng-model="newGroup.muscle_group_id">
+                  <option ng-repeat="musclegroup in ctrl.musclegroup" value="{{ musclegroup.id }}">{{ musclegroup.muscleGroupName }}</option>
+                </select> -->
+                <input type="text" placeholder="name" ng-model="newGroup.groupname"/>
+                <input type="submit">
+              </form>
+            </div>
+
+
+            <!-- <h1>Search for a workout</h1>
+            <input placeholder = "Search Muscle Groups", ng-model="searchText">
+              <ul ng-repeat="group in ctrl.groups | filter: query">
+                <li>{{ group.body.musclename }}</li> -->
+                <!-- <h4>{{ group.exercise.exercisename }}</h4>
+                <p>{{ group.exercise.desc }}</p>
+                <p>{{ group.exercise.duration }}</p> -->
+              <!-- </div> -->
+            <!-- <label>Search <input ng-model="searchText"></label>
+            <table id="searchTextResults">
+
+
+            <h3>Search by muscle group</h3>
+            <ul>
+              <li>Arms</li>
+              <li>Shoulder</li>
+              <li>Chest</li>
+              <li>Back</li>
+              <li>Legs</li>
+              <li>Buttocks</li>
+              <li>Abdomen</li>
+            </ul> -->
 
         <!-- <button ng-show="ctrl.adminLogin" ng-click="editBodies = ! editBodies; ctrl.editBody(body.id);">Edit {{ body.musclename }}</button><br /> -->
 
@@ -208,11 +278,7 @@
 
 
 
-        <!-- <h1>Find a workout by body group</h1>
-        <input placeholder = "Search Body Groups">
-                <div ng-repeat="groupname in ctrl.group | filter:searchText">
-                  <h2>{{group.groupname}}</h2>
-                </div> -->
+
 
   </body>
 </html>

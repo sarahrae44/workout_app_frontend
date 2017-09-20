@@ -6,36 +6,41 @@ app.controller('mainController', ['$http', function($http) {
   const controller = this;
   this.message = "controller works";
 
-  // this.url = 'http://localhost:3000';
+  this.url = 'http://localhost:3000';
 
-  this.url = 'https://workout-app-api.herokuapp.com';
+  // this.url = 'https://workout-app-api.herokuapp.com';
   this.muscle = {};
   // this.body.exercise = {};
   this.currentBody = {};
   this.showDropdowns = false;
   this.muscleSection = true;
-  this.exerciseSection = true;
-  this.registerModal = false;
-  this.loginModal = false;
-  this.accountDetails = false;
   this.addNewMuscle = false;
-  this.addNewExercise = false;
   this.hideMuscleList = false;
   this.showMuscleList = true;
+  this.musclesVisible = false;
+  this.exerciseSection = true;
+  this.addNewExercise = false;
   this.hideExerciseList = false;
   this.showExerciseList = true;
+  this.exercisesVisible = false;
+  this.registerModal = false;
+  this.loginModal = false;
   this.loggedIn = false;
   this.showRegisterButton = true;
   this.showLoginButton = true;
+  this.adminLogin = false;
+  this.errorModal = false;
+  this.accountDetails = false;
   this.showGroupList = true;
   this.hideGroupList = false;
   this.showGroupDetails = false;
-  this.adminLogin = false;
-  this.muslesVisible = false;
-  this.exercisesVisible = false;
   this.groupsVisible = false;
   this.muscleHeader = true;
-  this.errorModal = false;
+  this.addNewMuscleGroup = false;
+  this.muscleGroupSection = true;
+  this.showMuscleGroupList = true;
+  this.hideMuscleGroupList = false;
+  this.muscleGroupsVisible = false;
 
 
 // ===================== User-related =========================
@@ -290,6 +295,7 @@ app.controller('mainController', ['$http', function($http) {
 // ===================== Group-related ==========================
 
   this.group = {};
+  this.groups = [];
 
 // create group
   this.createGroup = function(newGroup) {
@@ -330,7 +336,46 @@ app.controller('mainController', ['$http', function($http) {
     });
   }
 
+  //search group
+  this.searchArms = function() {
+    console.log(controller.groups);
+  }
+
+
 // ===================== End Group-related ==========================
+
+// ===================== Muscle Group-related ==========================
+
+// this.musclegroup = {};
+
+// create muscle group
+// this.createMuscleGroup = function(newMuscleGroup) {
+//   $http({
+//     url: this.url + '/muscle_groups',
+//     method: 'POST',
+//     data: { muscle_group: { muscleGroupName: newMuscleGroup.muscleGroupName }}
+//   }).then(function(response) {
+//     console.log(response);
+//     this.musclegroup = response.data.musclegroup;
+//     // controller.getBodies();
+//   })
+// }
+
+// get all muscle groups
+// this.getMuscleGroups = function() {
+//   $http({
+//     url: this.url + '/muscle_groups',
+//     method: 'GET'
+//   }).then(function(response) {
+//     console.log(response.data);
+//     controller.musclegroup = response.data;
+//     controller.hideMuscleGroupList = ! controller.hideMuscleGroupList;
+//     controller.showMuscleGroupList = ! controller.showMuscleGroupList;
+//     controller.muscleGroupsVisible = ! controller.muscleGroupsVisible;
+//   })
+// }
+
+// ===================== End Muscle Group-related ==========================
 
   this.loginError = function(){
     this.errorModal = !this.errorModal;
