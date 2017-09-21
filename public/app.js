@@ -6,9 +6,9 @@ app.controller('mainController', ['$http', function($http) {
   const controller = this;
   this.message = "controller works";
 
-  // this.url = 'http://localhost:3000';
+  this.url = 'http://localhost:3000';
 
-  this.url = 'https://workout-app-api.herokuapp.com';
+  // this.url = 'https://workout-app-api.herokuapp.com';
   this.muscle = {};
   // this.body.exercise = {};
   this.currentBody = {};
@@ -44,6 +44,14 @@ app.controller('mainController', ['$http', function($http) {
   this.searchListVisible = false;
   this.showSearchList = true;
   this.hideSearchList = false;
+  this.showArmsResults = false;
+  this.showShouldersResults = false;
+  this.showChestResults = false;
+  this.showBackResults = false;
+  this.showLegsResults = false;
+  this.showButtocksResults = false;
+  this.showAbdomenResults = false;
+
 
 // ===================== User-related =========================
   this.user = {};
@@ -300,6 +308,8 @@ app.controller('mainController', ['$http', function($http) {
   this.groups = [];
   this.groupname = [];
   this.arm = {};
+  this.newGroupSearch = {};
+  this.groupSearch = {};
 
 // create group
   this.createGroup = function(newGroup) {
@@ -321,7 +331,7 @@ app.controller('mainController', ['$http', function($http) {
   this.getGroups = function() {
     $http({
       url: this.url + '/groups',
-      method: 'GET'
+      method: 'GET',
     }).then(function(response) {
       console.log(response.data);
       controller.group = response.data;
@@ -334,16 +344,123 @@ app.controller('mainController', ['$http', function($http) {
   this.searchArms = function() {
     $http({
       url: this.url + '/groups',
-      method: 'GET'
+      method: 'GET',
     }).then(function(response) {
       console.log(response.data);
       controller.groupname = response.data;
       console.log(controller.groupname);
-      //
       controller.armsGroup = controller.groupname.filter(function(arms){
         return arms.groupname == "Arms";
       });
       console.log(controller.armsGroup);
+    })
+  }
+
+  this.searchShoulders = function() {
+    $http({
+      url: this.url + '/groups',
+      method: 'GET',
+    }).then(function(response) {
+      console.log(response.data);
+      controller.groupname = response.data;
+      console.log(controller.groupname);
+      controller.shouldersGroup = controller.groupname.filter(function(shoulders){
+        return shoulders.groupname == "Shoulders";
+      });
+      console.log(controller.shouldersGroup);
+    })
+  }
+
+  this.searchChest = function() {
+    $http({
+      url: this.url + '/groups',
+      method: 'GET',
+    }).then(function(response) {
+      console.log(response.data);
+      controller.groupname = response.data;
+      console.log(controller.groupname);
+      controller.chestGroup = controller.groupname.filter(function(chest){
+        return chest.groupname == "Chest";
+      });
+      console.log(controller.chestGroup);
+    })
+  }
+
+  this.searchBack = function() {
+    $http({
+      url: this.url + '/groups',
+      method: 'GET',
+    }).then(function(response) {
+      console.log(response.data);
+      controller.groupname = response.data;
+      console.log(controller.groupname);
+      controller.backGroup = controller.groupname.filter(function(back){
+        return back.groupname == "Back";
+      });
+      console.log(controller.backGroup);
+    })
+  }
+
+  this.searchLegs = function() {
+    $http({
+      url: this.url + '/groups',
+      method: 'GET',
+    }).then(function(response) {
+      console.log(response.data);
+      controller.groupname = response.data;
+      console.log(controller.groupname);
+      controller.legsGroup = controller.groupname.filter(function(legs){
+        return legs.groupname == "Legs";
+      });
+      console.log(controller.legsGroup);
+    })
+  }
+
+  this.searchButtocks = function() {
+    $http({
+      url: this.url + '/groups',
+      method: 'GET',
+    }).then(function(response) {
+      console.log(response.data);
+      controller.groupname = response.data;
+      console.log(controller.groupname);
+      controller.buttocksGroup = controller.groupname.filter(function(buttocks){
+        return buttocks.groupname == "Buttocks";
+      });
+      console.log(controller.buttocksGroup);
+    })
+  }
+
+  this.searchAbdomen = function() {
+    $http({
+      url: this.url + '/groups',
+      method: 'GET',
+    }).then(function(response) {
+      console.log(response.data);
+      controller.groupname = response.data;
+      console.log(controller.groupname);
+      controller.abdomenGroup = controller.groupname.filter(function(abdomen){
+        return abdomen.groupname == "Abdomen";
+      });
+      console.log(controller.abdomenGroup);
+    })
+  }
+
+  // this.searchArms = function(newGroupSearch) {
+  //   $http({
+  //     url: this.url + '/groups',
+  //     method: 'GET',
+  //     data: { groupSearch: { groupname: newGroupSearch.groupname }}
+  //   }).then(function(response) {
+  //     console.log(response.data);
+  //     this.groupSearch = response.data.groupSearch;
+  //     // controller.groupname = response.data;
+  //     // console.log(controller.groupname);
+  //     //
+  //     controller.searchGroup = controller.groupname.filter(function(search){
+  //       return search.groupname == controller.groupSearch.groupname;
+  //     });
+  //     console.log(controller.searchGroup);
 
 
       // .filter(function(armsGroup){
@@ -351,8 +468,8 @@ app.controller('mainController', ['$http', function($http) {
       // });
       // console.log(arms);
       // controller.group = response.data;
-    })
-  }
+  //   })
+  // }
 
   // delete group
   this.deleteGroup = function(id) {

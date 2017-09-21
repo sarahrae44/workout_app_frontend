@@ -204,13 +204,62 @@
         <!-- Body part specific -->
     <h3>Find exercises by body part</h3>
 
-      <h4 ng-click="ctrl.searchArms();">Arms</h4>
-      <div ng-repeat="group in ctrl.armsGroup track by $index">
+      <h4 ng-click="ctrl.searchArms(); ctrl.showArmsResults = ! ctrl.showArmsResults;">Arms</h4>
+      <div ng-show="ctrl.showArmsResults" ng-repeat="group in ctrl.armsGroup track by $index">
         <h3>{{ group.body.musclename }}</h3>
         <h3>{{ group.exercise.exercisename }}</h3>
         <p>{{ group.exercise.desc }}</p>
       </div>
 
+      <h4 ng-click="ctrl.searchShoulders(); ctrl.showShouldersResults = ! ctrl.showShouldersResults;">Shoulders</h4>
+      <div ng-show="ctrl.showShouldersResults" ng-repeat="group in ctrl.shouldersGroup track by $index">
+        <h3>{{ group.body.musclename }}</h3>
+        <h3>{{ group.exercise.exercisename }}</h3>
+        <p>{{ group.exercise.desc }}</p>
+      </div>
+
+      <h4 ng-click="ctrl.searchChest(); ctrl.showChestResults = ! ctrl.showChestResults;">Chest</h4>
+      <div ng-show="ctrl.showChestResults" ng-repeat="group in ctrl.chestGroup track by $index">
+        <h3>{{ group.body.musclename }}</h3>
+        <h3>{{ group.exercise.exercisename }}</h3>
+        <p>{{ group.exercise.desc }}</p>
+      </div>
+
+      <h4 ng-click="ctrl.searchBack(); ctrl.showBackResults = ! ctrl.showBackResults;">Back</h4>
+      <div ng-show="ctrl.showBackResults" ng-repeat="group in ctrl.backGroup track by $index">
+        <h3>{{ group.body.musclename }}</h3>
+        <h3>{{ group.exercise.exercisename }}</h3>
+        <p>{{ group.exercise.desc }}</p>
+      </div>
+
+      <h4 ng-click="ctrl.searchLegs(); ctrl.showLegsResults = ! ctrl.showLegsResults;">Legs</h4>
+      <div ng-show="ctrl.showLegsResults" ng-repeat="group in ctrl.legsGroup track by $index">
+        <h3>{{ group.body.musclename }}</h3>
+        <h3>{{ group.exercise.exercisename }}</h3>
+        <p>{{ group.exercise.desc }}</p>
+      </div>
+
+      <h4 ng-click="ctrl.searchButtocks(); ctrl.showButtocksResults = ! ctrl.showButtocksResults;">Buttocks</h4>
+      <div ng-show="ctrl.showButtocksResults" ng-repeat="group in ctrl.buttocksGroup track by $index">
+        <h3>{{ group.body.musclename }}</h3>
+        <h3>{{ group.exercise.exercisename }}</h3>
+        <p>{{ group.exercise.desc }}</p>
+      </div>
+
+      <h4 ng-click="ctrl.searchAbdomen(); ctrl.showAbdomenResults = ! ctrl.showAbdomenResults;">Abdomen</h4>
+      <div ng-show="ctrl.showAbdomenResults" ng-repeat="group in ctrl.abdomenGroup track by $index">
+        <h3>{{ group.body.musclename }}</h3>
+        <h3>{{ group.exercise.exercisename }}</h3>
+        <p>{{ group.exercise.desc }}</p>
+      </div>
+
+
+      <!-- <form ng-submit="ctrl.searchArms(newGroupSearch)">
+        <select name="Arms" ng-model="newGroupSearch.groupname">
+        <option value="Arms">Arms</option>
+        </select>
+        <input type="submit">
+      </form> -->
 
     <!-- Muscle Groups section -->
 
