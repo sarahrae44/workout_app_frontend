@@ -1,5 +1,12 @@
 body {
   background-color: grey;
+  background-image: url('https://i.imgur.com/W7zlSlq.png');
+  background-position: center;
+}
+
+.header{
+  font-size: 1em;
+  color: white;
 }
 
 .ng-modal-overlay {
@@ -17,8 +24,8 @@ body {
 .ng-modal-dialog {
   /* A centered div above the overlay with a box shadow. */
   z-index:10000;
-  position: absolute;
-  width: 50%; /* Default */
+  position:relative;
+  width: 30%; /* Default */
 
   /* Center the dialog */
   top: 50%;
@@ -29,11 +36,12 @@ body {
 
   background-color: #fff;
   box-shadow: 4px 4px 80px #000;
+  padding: 10px 20px 20px 20px;
 }
 
 .ng-modal-dialog-content {
   padding:10px;
-  text-align: left;
+  text-align: center;
 }
 .ng-modal-close {
   position: absolute;
@@ -45,4 +53,9 @@ body {
   display: inline-block;
   font-weight: bold;
   font-family: 'arial', 'sans-serif';
+}
+
+.navbar-right{
+  padding-right: 30px;
+  /*font-size: 1.5rem;*/
 }

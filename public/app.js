@@ -6,9 +6,9 @@ app.controller('mainController', ['$http', function($http) {
   const controller = this;
   this.message = "controller works";
 
-  // this.url = 'http://localhost:3000';
+  this.url = 'http://localhost:3000';
 
-  this.url = 'https://workout-app-api.herokuapp.com';
+  // this.url = 'https://workout-app-api.herokuapp.com';
   this.muscle = {};
   // this.body.exercise = {};
   this.currentBody = {};
@@ -91,6 +91,9 @@ app.controller('mainController', ['$http', function($http) {
         this.loginError();
       } else {
         this.loggedin = true;
+        controller.loggedIn = ! controller.loggedIn;
+        controller.showLoginButton = ! controller.showLoginButton;
+        controller.showRegisterButton = ! controller.showRegisterButton;
         if (userPass.username === "waLogin"){
           console.log(userPass.username);
           this.adminLogin = true
@@ -103,8 +106,8 @@ app.controller('mainController', ['$http', function($http) {
       console.log('username: ', userPass.username);
       console.log('password: ', userPass.password);
       controller.loginModal = ! controller.loginModal;
-      controller.loggedIn = ! controller.loggedIn;
-      controller.accountDetails = ! controller.accountDetails;
+      // controller.loggedIn = ! controller.loggedIn;
+      // controller.accountDetails = ! controller.accountDetails;
     }.bind(this));
 
   }
