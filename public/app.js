@@ -6,9 +6,9 @@ app.controller('mainController', ['$http', function($http) {
   const controller = this;
   this.message = "controller works";
 
-  // this.url = 'http://localhost:3000';
+  this.url = 'http://localhost:3000';
 
-  this.url = 'https://workout-app-api.herokuapp.com';
+  // this.url = 'https://workout-app-api.herokuapp.com';
   this.muscle = {};
   // this.body.exercise = {};
   this.currentBody = {};
@@ -51,12 +51,14 @@ app.controller('mainController', ['$http', function($http) {
   this.showLegsResults = false;
   this.showButtocksResults = false;
   this.showAbdomenResults = false;
+  this.addToProfileForm = false;
 
 
 // ===================== User-related =========================
   this.user = {};
   this.users = [];
   this.userPass = {};
+  this.newUserSafe = {};
 
 // register new user
   this.createUser = function(userPass) {
@@ -307,7 +309,6 @@ app.controller('mainController', ['$http', function($http) {
   this.group = {};
   this.groups = [];
   this.groupname = [];
-  this.arm = {};
   this.newGroupSearch = {};
   this.groupSearch = {};
 
@@ -525,23 +526,20 @@ app.controller('mainController', ['$http', function($http) {
 
 // ===================== Body part search ==================================
 
-// this.armsSearch = controller.groups.filter(function(group) {
-//   return group.groupname === "arms";
-// });
-//
+this.usersafe = {};
 
-  // this.armsSearch = controller.groups.filter(controller.group.groupname = "Arms");
-// this.armsSearch = function(group) {
-//   controller.groups.filter((group) {
-//     return group.groupname === "arms";
-//   })
-// });
-
-// this.searchArms = function() {
-//   controller.groups.filter(function(controller.group){
-//     return group.groupname = "arms"
-//   });
-// }
+// add user exercises
+  this.createUsersafe = function(group_id, user_id) {
+    console.log(group_id, user_id);
+    $http({
+      url: this.url + '/usersaves',
+      method: 'POST',
+      data: { usersafe: { group_id: group_id, user_id: user_id }},
+    }).then(function(response) {
+      console.log(response);
+      this.usersafe = response.data.usersafe;
+    });
+  }
 
 
 
