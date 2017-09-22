@@ -6,9 +6,9 @@ app.controller('mainController', ['$http', function($http) {
   const controller = this;
   this.message = "controller works";
 
-  // this.url = 'http://localhost:3000';
+  this.url = 'http://localhost:3000';
 
-  this.url = 'https://workout-app-api.herokuapp.com';
+  // this.url = 'https://workout-app-api.herokuapp.com';
   this.muscle = {};
   // this.body.exercise = {};
   this.currentBody = {};
@@ -16,6 +16,7 @@ app.controller('mainController', ['$http', function($http) {
   this.muscleSection = true;
   this.addNewMuscle = false;
   this.hideMuscleList = false;
+  this.showMuscles = false;
   this.showMuscleList = true;
   this.musclesVisible = false;
   this.exerciseSection = true;
@@ -52,7 +53,7 @@ app.controller('mainController', ['$http', function($http) {
   this.showButtocksResults = false;
   this.showAbdomenResults = false;
   this.addToProfileForm = false;
-
+  this.showUsersaves = false;
 
 // ===================== User-related =========================
   this.user = {};
@@ -529,18 +530,48 @@ app.controller('mainController', ['$http', function($http) {
 this.usersafe = {};
 
 // add user exercises
-  this.createUsersafe = function(group_id, user_id) {
-    console.log(group_id, user_id);
+  // this.createUsersafe = function(group_id, user_id) {
+  //   console.log(group_id, user_id);
+  //   $http({
+  //     url: this.url + '/usersaves',
+  //     method: 'POST',
+  //     data: { usersafe: { group_id: group_id, user_id: user_id }},
+  //   }).then(function(response) {
+  //     console.log(response);
+  //     this.usersafe = response.data.usersafe;
+  //   });
+  // }
+
+// Testing
+
+  this.createUsersafe = function(exercise_id, user_id) {
+    console.log(exercise_id);
     $http({
-      url: this.url + '/usersaves',
+      url: this.url + '/user_exes',
       method: 'POST',
-      data: { usersafe: { group_id: group_id, user_id: user_id }},
+      data: { user_ex: { exercise_id: exercise_id, user_id: user_id }},
     }).then(function(response) {
       console.log(response);
-      this.usersafe = response.data.usersafe;
+      // this.usersafe = response.data.usersafe;
     });
   }
 
+// End testing
+
+  this.getUserExercises = function() {
+    $http({
+      url: this.url + '/user_exes',
+      method: 'GET',
+    }).then(function(response) {
+      console.log(response.data);
+      controller.searchreturn = response.data;
+      // console.log(controller.searchreturn);
+      controller.returnedGroup = controller.searchreturn.filter(function(saved){
+        return saved.user_id == controller.user.id;
+      });
+      console.log(controller.returnedGroup);
+    })
+  }
 
 
 // ===================== End body part search ==============================

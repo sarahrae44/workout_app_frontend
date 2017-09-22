@@ -59,6 +59,17 @@
       </form>
     </div>
 
+    <button ng-show="ctrl.loggedIn" ng-click="ctrl.getUserExercises(); ctrl.showUsersaves = ! ctrl.showUsersaves">Get my exercises</button>
+    <div ng-repeat="user_ex in ctrl.returnedGroup track by $index">
+      <!-- <div ng-repeat="group in ctrl.group track by $index"> -->
+      <h3>{{ user_ex.exercise.img }}</h3>
+      <h3>{{ user_ex.exercise.exercisename }}</h3>
+      <p>{{ user_ex.exercise.desc }}</p>
+
+      <!-- <p>{{ usersafe.group.exercise.desc }}</p> -->
+    <!-- </div> -->
+    </div>
+
 
     <!-- {{ ctrl.message }} -->
     <!-- <h4 ng-click="ctrl.getUsers()">Click to see secret stuff</h4>
@@ -114,11 +125,16 @@
 
     <!-- Exercises section -->
 
-    <h4 ng-click="ctrl.getExercises()" ng-show="ctrl.showExerciseList">Click to see exercises</h4>
+    <h4 ng-click="ctrl.getExercises();" ng-show="ctrl.showExerciseList">Click to see exercises</h4>
     <h4 ng-show="ctrl.hideExerciseList" ng-click="ctrl.exercisesVisible = ! ctrl.exercisesVisible; ctrl.showExerciseList = ! ctrl.showExerciseList; ctrl.hideExerciseList = ! ctrl.hideExerciseList">Hide exercises</h4>
     <div ng-show="ctrl.exercisesVisible">
       <div ng-show="ctrl.exerciseSection" ng-repeat="exercise in ctrl.exercise track by $index">
-        <h3><a href="#" ng-click="showMuscles = ! showMuscles">{{ exercise.exercisename }}</a></h3>
+        <h3><a href="#" ng-click="ctrl.showMuscles = ! ctrl.showMuscles">{{ exercise.exercisename }}</a></h3>
+        <div ng-show="ctrl.showMuscles" ng-repeat="body in exercise.bodies track by $index">
+          <h4>{{ body.musclename }}</h4>
+          <img src="{{ body.img }}">
+          <!-- <p>{{ exercise.desc }}</p> -->
+        </div>
         <button ng-show="ctrl.adminLogin" ng-click="editExercises = ! editExercises; ctrl.editExercise(exercise.id);">Edit {{ exercise.exercisename }}</button><br />
 
         <!-- Edit exercise form -->
@@ -137,7 +153,12 @@
         </form>
         <img src="{{ exercise.img }}">
         <p>{{ exercise.desc }}</p>
-        <div ng-show="showMuscles" ng-repeat="body in exercise.bodies track by $index">
+
+        <button ng-show="ctrl.loggedIn" ng-click="ctrl.createUsersafe(exercise.id, ctrl.user.id)">Add to profile</button>
+      </div>
+
+
+        <div ng-show="ctrl.showMuscles" ng-repeat="body in ctrl.exercise.bodies track by $index">
           <h4>{{ body.musclename }}</h4>
           <img src="{{ body.img }}">
           <p>{{ body.desc }}</p>
@@ -209,17 +230,31 @@
         <h3>{{ group.body.musclename }}</h3>
         <h3>{{ group.exercise.exercisename }}</h3>
         <p>{{ group.exercise.desc }}</p>
-
-        <button ng-click="ctrl.createUsersafe(group.id, ctrl.user.id)">Add to profile</button>
-        <!-- <form ng-submit="ctrl.createUsersafe(ctrl.usersafe)">
-          <input type="text" ng-model="ctrl.usersafe.group_id" value="{{ group.id }}" placeholder="{{ group.id }}"/>
-          <input type="text" ng-model="ctrl.user.id" value="{{ ctrl.user.id }}" placeholder="{{ ctrl.user.id }}"/>
-          <input ng-show="ctrl.loggedin" type="submit" value="Add to profile">
-        </form> -->
-
-
-        <!-- <button ng-click="ctrl.addToProfile();">Add to profile</button> -->
       </div>
+
+<!-- Testing -->
+      <!-- <h3>Find exercises by body part</h3>
+
+        <h4 ng-click="ctrl.searchArms(); ctrl.showArmsResults = ! ctrl.showArmsResults;">Arms</h4>
+        <div ng-show="ctrl.showArmsResults" ng-repeat="group in ctrl.armsGroup track by $index">
+          <h3>{{ group.exercise_id }}</h3>
+          <h3>{{ group.body.musclename }}</h3>
+          <h3>{{ group.exercise.exercisename }}</h3>
+          <p>{{ group.exercise.desc }}</p>
+
+          <button ng-click="ctrl.createUsersafe(group.exercise_id, ctrl.user.id)">Add to profile</button> -->
+          <!-- <form ng-submit="ctrl.createUsersafe(ctrl.usersafe)">
+            <input type="text" ng-model="ctrl.usersafe.group_id" value="{{ group.id }}" placeholder="{{ group.id }}"/>
+            <input type="text" ng-model="ctrl.user.id" value="{{ ctrl.user.id }}" placeholder="{{ ctrl.user.id }}"/>
+            <input ng-show="ctrl.loggedin" type="submit" value="Add to profile">
+          </form> -->
+
+
+          <!-- <button ng-click="ctrl.addToProfile();">Add to profile</button> -->
+        <!-- </div> -->
+
+<!-- End testing -->
+
 
       <h4 ng-click="ctrl.searchShoulders(); ctrl.showShouldersResults = ! ctrl.showShouldersResults;">Shoulders</h4>
       <div ng-show="ctrl.showShouldersResults" ng-repeat="group in ctrl.shouldersGroup track by $index">
