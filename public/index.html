@@ -209,6 +209,16 @@
         <h3>{{ group.body.musclename }}</h3>
         <h3>{{ group.exercise.exercisename }}</h3>
         <p>{{ group.exercise.desc }}</p>
+
+        <button ng-click="ctrl.createUsersafe(group.id, ctrl.user.id)">Add to profile</button>
+        <!-- <form ng-submit="ctrl.createUsersafe(ctrl.usersafe)">
+          <input type="text" ng-model="ctrl.usersafe.group_id" value="{{ group.id }}" placeholder="{{ group.id }}"/>
+          <input type="text" ng-model="ctrl.user.id" value="{{ ctrl.user.id }}" placeholder="{{ ctrl.user.id }}"/>
+          <input ng-show="ctrl.loggedin" type="submit" value="Add to profile">
+        </form> -->
+
+
+        <!-- <button ng-click="ctrl.addToProfile();">Add to profile</button> -->
       </div>
 
       <h4 ng-click="ctrl.searchShoulders(); ctrl.showShouldersResults = ! ctrl.showShouldersResults;">Shoulders</h4>
