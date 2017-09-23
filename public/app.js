@@ -65,6 +65,9 @@ app.controller('mainController', ['$http', function($http) {
   this.backToAccountButton = false;
   this.accountViewOn = false;
   this.showHomeButton = false;
+  this.user_exes = false;
+  this.editUserDets = false;
+  this.getUserExButton = false;
 
 // ===================== User-related =========================
   this.user = {};
@@ -586,7 +589,9 @@ this.usersafe = {};
       url: this.url + '/user_exes',
       method: 'GET',
     }).then(function(response) {
-      this.backToAccountButton = true;
+      this.index = false;
+      this.user_exes = true;
+      // this.backToAccountButton = true;
       // this.exerciseButton = false;
       // this.viewUserExes = true;
       console.log(response.data);
@@ -629,6 +634,7 @@ this.usersafe = {};
     this.index = true;
     this.accountViewOn = false;
     this.accountDetails = false;
+    this.user_exes = false;
   }
 
   this.showUserAccount = function(){
