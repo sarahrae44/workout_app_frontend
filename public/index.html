@@ -14,9 +14,9 @@
       <div class="row">
         <nav class="navbar navbar-inverse navbar-static-top">
           <h3 ng-click="ctrl.loginModal = ! ctrl.loginModal;" ng-show="ctrl.showLoginButton" class="navbar-text">Login</h3>
-          <h3 ng-click="ctrl.registerModal = ! ctrl.registerModal; ctrl.showRegisterButton = ! ctrl.showRegisterButton; ctrl.showLoginButton = ! ctrl.showLoginButton;" ng-show="ctrl.showRegisterButton" class="navbar-text">Register</h3>
+          <h3 ng-click="ctrl.registerModal = ! ctrl.registerModal; ctrl.showRegisterButton = ! ctrl.showRegisterButton; ctrl.showLoginButton = ! ctrl.showLoginButton;" ng-show="ctrl.showRegisterButton" class="navbar-text">Register</h3><h3 class="navbar-text" ng-show="ctrl.loggedIn" ng-click="ctrl.backToHome()">Home</h3>
           <div ng-show="ctrl.loggedIn">
-            <h5 class="navbar-text navbar-right">Logged in username: {{ ctrl.user.username }} | <a href="#" ng-click="ctrl.accountDetails =! ctrl.accountDetails">Account</a> | <a href="#" ng-click="ctrl.logout()">Log Out</a></h5>
+            <h5 class="navbar-text navbar-right">Logged in username: {{ ctrl.user.username }} | <a href="#" ng-click="ctrl.accountDetails =! ctrl.accountDetails; ctrl.index = ! ctrl.index">Account</a> | <a href="#" ng-click="ctrl.logout()">Log Out</a></h5>
           </div>
         </nav>
       </div>
@@ -34,6 +34,8 @@
       <!---- User exercises Section ---->
           <section id="userexes" ng-include="'./userexercises.html'"></section>
 
+        <div ng-show="ctrl.index">
+
       <!---- Muscles Section ---->
           <section id="muscles" ng-include="'./muscles.html'"></section>
 
@@ -45,7 +47,7 @@
 
       <!---- Groups Section ---->
           <section id="exByGroup" ng-include="'./exByGroup.html'"></section>
-
+        </div>
 
 
 
