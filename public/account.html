@@ -1,0 +1,25 @@
+<!-- Edit form -->
+  <div ng-show="ctrl.accountDetails;" class="accountPage">
+    <!-- <div ng-hide="ctrl.viewUserExes"> -->
+
+    <h3>Edit User</h3>
+    <form ng-submit="ctrl.updatedUser(ctrl.updatedUser.username, ctrl.updatedUser.password)">
+      <input type="text" placeholder="{{ ctrl.userPass.username }}" ng-model="ctrl.updatedUser.username">
+      <input type="password" ng-model="ctrl.updatedUser.password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;">
+      <button type="submit">Confirm</button>
+    </form>
+
+  <!-- Delete user button -->
+    <form ng-submit="ctrl.deleteUser(userPass)" accept-charset="UTF-8" action="/users/1" method="delete">
+      <input name="_method" type="hidden" value="destroy"/>
+      <button>Delete User</button>
+    </form>
+  <!-- </div> -->
+
+
+    <!-- user saved exercises -->
+    <button ng-show="ctrl.loggedIn;" ng-click="ctrl.getUserExercises();">Get my exercises</button>
+
+    <!-- user exercise section -->
+    <section id="userexercises" ng-include="./userexercises.html"></section>
+  </div>

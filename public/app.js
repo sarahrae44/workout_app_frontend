@@ -54,6 +54,15 @@ app.controller('mainController', ['$http', function($http) {
   this.showAbdomenResults = false;
   this.addToProfileForm = false;
   this.showUsersaves = false;
+  this.viewUserExes = false;
+  this.index = true;
+  this.account = false;
+  this.muscles = true;
+  this.exercises = true;
+  this.groups = true;
+  this.exByGroup = true;
+  this.exerciseButton = false;
+  this.backToAccountButton = false;
 
 // ===================== User-related =========================
   this.user = {};
@@ -91,6 +100,11 @@ app.controller('mainController', ['$http', function($http) {
         this.loginError();
       } else {
         this.loggedin = true;
+        // this.muscles = false;
+        // this.exercises = false;
+        // this.groups = false;
+
+        this.exerciseButton = true;
         controller.loggedIn = ! controller.loggedIn;
         controller.showLoginButton = ! controller.showLoginButton;
         controller.showRegisterButton = ! controller.showRegisterButton;
@@ -106,6 +120,7 @@ app.controller('mainController', ['$http', function($http) {
       console.log('username: ', userPass.username);
       console.log('password: ', userPass.password);
       controller.loginModal = ! controller.loginModal;
+      // controller.index = false;
       // controller.loggedIn = ! controller.loggedIn;
       // controller.accountDetails = ! controller.accountDetails;
     }.bind(this));
@@ -566,6 +581,9 @@ this.usersafe = {};
       url: this.url + '/user_exes',
       method: 'GET',
     }).then(function(response) {
+      this.backToAccountButton = true;
+      // this.exerciseButton = false;
+      // this.viewUserExes = true;
       console.log(response.data);
       controller.searchreturn = response.data;
       // console.log(controller.searchreturn);
@@ -592,4 +610,13 @@ this.usersafe = {};
   this.reload = function() {
     location.reload();
     }
+
+  this.backToAccount = function() {
+    this.accountDetails = true;
+    this.account = true;
+  }
+
+  this.hideUserExButton = function() {
+    this.exerciseButton = false;
+  }
 }]);
