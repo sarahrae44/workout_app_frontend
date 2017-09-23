@@ -1,0 +1,46 @@
+<!-- Bodies section -->
+<div ng-show="ctrl.muscles" class="musclesPage">
+  <h4 ng-click="ctrl.getBodies();" ng-show="ctrl.showMuscleList;">Click to see muscles</h4>
+  <h4 ng-show="ctrl.hideMuscleList" ng-click="ctrl.musclesVisible = ! ctrl.musclesVisible; ctrl.showMuscleList = ! ctrl.showMuscleList; ctrl.hideMuscleList = ! ctrl.hideMuscleList">Hide muscles</h4>
+
+  <div ng-show="ctrl.musclesVisible">
+    <div ng-repeat="body in ctrl.body track by $index" ng-show="ctrl.muscleSection">
+      <h3><a href="#" ng-click="showExercises = ! showExercises; showBodyImage = ! showBodyImage">{{ body.musclename }}</a>
+      </h3>
+      <img ng-show="showBodyImage" src="{{ body.img }}">
+      <div ng-show="showExercises" ng-repeat="exercise in body.exercises track by $index">
+        <h4>{{ exercise.exercisename }}</h4>
+        <img src="{{ exercise.img }}">
+        <p>{{ exercise.desc }}</p>
+      </div>
+
+      <button ng-show="ctrl.adminLogin" ng-click="editBodies = ! editBodies; ctrl.editBody(body.id);">Edit {{ body.musclename }}</button><br />
+
+      <!-- Edit body form -->
+      <div ng-show="editBodies">
+        <form method="update">
+          <input type="text" placeholder="text" ng-model="ctrl.currentBody.musclename">
+          <input type="text" ng-model="ctrl.currentBody.img" placeholder="image path">
+          <button ng-click="ctrl.pushBodyEdit(); editBodies = ! editBodies;">Confirm</button>
+        </form>
+      </div>
+      <!-- end of edit body form -->
+
+      <form ng-submit="ctrl.deleteBody(body.id)" accept-charset="UTF-8" method="delete">
+        <input name="_method" type="hidden" value="destroy"/>
+        <button ng-show="ctrl.adminLogin">Delete {{ body.musclename }}</button>
+      </form>
+    </div>
+  </div>
+
+  <div ng-show="ctrl.adminLogin" ng-click="ctrl.addNewMuscle = ! ctrl.addNewMuscle">
+    <h3>Add new muscle/group</h3>
+  </div>
+  <div ng-show="ctrl.addNewMuscle;">
+    <form ng-submit="ctrl.createBody(newBody)">
+      <input type="text" ng-model="newBody.musclename" placeholder="name"/>
+      <input type="text" ng-model="newBody.img" placeholder="img path"/>
+      <input type="submit">
+    </form>
+  </div>
+</div>
