@@ -63,6 +63,8 @@ app.controller('mainController', ['$http', function($http) {
   this.exByGroup = true;
   this.exerciseButton = false;
   this.backToAccountButton = false;
+  this.accountViewOn = false;
+  this.showHomeButton = false;
 
 // ===================== User-related =========================
   this.user = {};
@@ -99,13 +101,16 @@ app.controller('mainController', ['$http', function($http) {
         this.loggedin = false;
         this.loginError();
       } else {
-        this.loggedin = true;
+        this.loggedIn = true;
+        this.accountViewOn = true;
+        this.showHomeButton = true;
+        // this.accountDetails = true;
         // this.muscles = false;
         // this.exercises = false;
         // this.groups = false;
 
         this.exerciseButton = true;
-        controller.loggedIn = ! controller.loggedIn;
+        // controller.loggedIn = ! controller.loggedIn;
         controller.showLoginButton = ! controller.showLoginButton;
         controller.showRegisterButton = ! controller.showRegisterButton;
         if (userPass.username === "waLogin"){
@@ -618,5 +623,18 @@ this.usersafe = {};
 
   this.hideUserExButton = function() {
     this.exerciseButton = false;
+  }
+
+  this.backToHome = function() {
+    this.index = true;
+    this.accountViewOn = false;
+    this.accountDetails = false;
+  }
+
+  this.showUserAccount = function(){
+    // this.accountDetails = true;
+    this.index = false;
+    this.accountViewOn = true;
+    this.showHomeButton = true;
   }
 }]);
