@@ -2,7 +2,7 @@
   <div ng-show="ctrl.accountDetails;" class="accountPage">
     <!-- <div ng-hide="ctrl.viewUserExes"> -->
 
-    <button ng-click="ctrl.editUserDets = ! ctrl.editUserDets; ctrl.getUserExButton = ! ctrl.getUserExButton">Edit User</button>
+    <button ng-click="ctrl.editUserDets = ! ctrl.editUserDets; ctrl.getUserExButton = ! ctrl.getUserExButton" ng-show="ctrl.loggedIn; ctrl.editUserButton">Edit User</button>
     <form ng-show="ctrl.editUserDets" ng-submit="ctrl.updatedUser(ctrl.updatedUser.username, ctrl.updatedUser.password)">
       <input type="text" placeholder="{{ ctrl.userPass.username }}" ng-model="ctrl.updatedUser.username">
       <input type="password" ng-model="ctrl.updatedUser.password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;">
@@ -18,8 +18,16 @@
 
 
     <!-- user saved exercises -->
-    <button ng-show="ctrl.loggedIn; ctrl.getUserExButton" ng-click="ctrl.getUserExercises(); ctrl.accountDetails =! ctrl.accountDetails;">Get my exercises</button>
+    <button ng-show="ctrl.loggedIn; ctrl.getUserExButton" ng-click="ctrl.getUserExercises(); ctrl.accountDetails =! ctrl.accountDetails; ctrl.editUserButton = ! ctrl.editUserButton">Get my exercises</button>
+    <button ng-show="ctrl.loggedIn; ctrl.hideUserExes">Hide my exercises</button>
 
     <!-- user exercise section -->
-    <section id="userexercises" ng-include="./userexercises.html"></section>
+
+
+
+    <!-- <div ng-repeat="user_ex in ctrl.returnedGroup track by $index">
+      <h3>{{ user_ex.exercise.img }}</h3>
+      <h3>{{ user_ex.exercise.exercisename }}</h3>
+      <p>{{ user_ex.exercise.desc }}</p>
+    </div> -->
   </div>

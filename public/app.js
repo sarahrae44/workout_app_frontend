@@ -68,6 +68,16 @@ app.controller('mainController', ['$http', function($http) {
   this.user_exes = false;
   this.editUserDets = false;
   this.getUserExButton = false;
+  this.editUserButton = false;
+  this.hideUserExes = false;
+  this.arms = true;
+  this.shoulders = true;
+  this.chest = true;
+  this.back = true;
+  this.legs = true;
+  this.buttocks = true;
+  this.abdomen = true;
+
 
 // ===================== User-related =========================
   this.user = {};
@@ -591,6 +601,8 @@ this.usersafe = {};
     }).then(function(response) {
       this.index = false;
       this.user_exes = true;
+      this.editUserButton = true;
+      this.hideUserExes = true;
       // this.backToAccountButton = true;
       // this.exerciseButton = false;
       // this.viewUserExes = true;
@@ -643,4 +655,12 @@ this.usersafe = {};
     this.accountViewOn = true;
     this.showHomeButton = true;
   }
+
+  this.accountButtonClicked = function() {
+    this.accountDetails = true;
+    this.getUserExButton = true;
+    this.editUserButton = true;
+    this.index = false;
+  }
+
 }]);
