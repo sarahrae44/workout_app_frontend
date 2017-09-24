@@ -1,57 +1,67 @@
 <!DOCTYPE html>
-<html ng-app="workout_app">
+<html ng-app="workout_app" lang="en">
   <head>
-    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="style.css">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
     <script type="text/javascript" src="app.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet">
 
     <title>Workout generator</title>
   </head>
   <div class="container-fluid">
     <body ng-controller="mainController as ctrl">
-      <div class="row">
-        <nav class="navbar navbar-inverse navbar-static-top">
-          <h3 ng-click="ctrl.loginModal = ! ctrl.loginModal;" ng-show="ctrl.showLoginButton" class="navbar-text" ng-hide="ctrl.loggedIn">Login</h3>
-          <h3 ng-click="ctrl.registerModal = ! ctrl.registerModal; ctrl.showRegisterButton = ! ctrl.showRegisterButton; ctrl.showLoginButton = ! ctrl.showLoginButton;" ng-show="ctrl.showRegisterButton" class="navbar-text" ng-hide="ctrl.loggedIn">Register</h3><h3 class="navbar-text" ng-show="ctrl.loggedIn" ng-click="ctrl.backToHome()">Home</h3>
-          <div ng-show="ctrl.loggedIn">
-            <h5 class="navbar-text navbar-right">Logged in username: {{ ctrl.user.username }} | <a href="#" ng-click="ctrl.accountButtonClicked();">Account</a> | <a href="#" ng-click="ctrl.logout()">Log Out</a></h5>
-          </div>
-        </nav>
-      </div>
-
-      <div class="row">
-        <h3 class="header text-center">Workout home page</h3>
-      </div>
-
-      <!---- Login Section ---->
-          <section id="login" ng-include="'./login.html'"></section>
-
-      <!---- Account Section ---->
-          <section id="account" ng-include="'./account.html'"></section>
-
-      <!---- User exercises Section ---->
-          <section id="userexes" ng-include="'./userexercises.html'"></section>
-
-        <div ng-show="ctrl.index">
-
-      <!---- Muscles Section ---->
-          <section id="muscles" ng-include="'./muscles.html'"></section>
-
-      <!---- Exercises Section ---->
-          <section id="exercises" ng-include="'./exercises.html'"></section>
-
-      <!---- Groups Section ---->
-          <section id="groups" ng-include="'./groups.html'"></section>
-
-      <!---- Groups Section ---->
-          <section id="exByGroup" ng-include="'./exByGroup.html'"></section>
+      <div class="mainBody">
+        <div class="row">
+            <nav class="navbar navbar-inverse navbar-static-top navbarPadding">
+              <h3 ng-click="ctrl.loginModal = ! ctrl.loginModal;" ng-show="ctrl.showLoginButton" class="navbar-text" ng-hide="ctrl.loggedIn">Login</h3>
+              <h3 ng-click="ctrl.registerModal = ! ctrl.registerModal; ctrl.showRegisterButton = ! ctrl.showRegisterButton; ctrl.showLoginButton = ! ctrl.showLoginButton;" ng-show="ctrl.showRegisterButton" class="navbar-text" ng-hide="ctrl.loggedIn">Register</h3><h3 class="navbar-text" ng-show="ctrl.loggedIn" ng-click="ctrl.backToHome()">Home</h3>
+              <div ng-show="ctrl.loggedIn">
+                <h5 class="navbar-text navbar-right">Logged in username: {{ ctrl.user.username }} | <a href="#" ng-click="ctrl.accountButtonClicked();">Account</a> | <a href="#" ng-click="ctrl.logout()">Log Out</a></h5>
+              </div>
+            </nav>
         </div>
 
+        <div class="row">
+          <!-- <div class="col-md-12"> -->
+            <div class="header text-center header3">Workout home page</div>
+          <!-- </div> -->
+        </div>
+
+        <!---- Login Section ---->
+            <section id="login" ng-include="'./login.html'"></section>
+
+        <!---- Account Section ---->
+            <section id="account" ng-include="'./account.html'"></section>
+
+        <!---- User exercises Section ---->
+            <section id="userexes" ng-include="'./userexercises.html'"></section>
+
+          <!-- <div class="col-md-12"> -->
+            <div ng-show="ctrl.index">
+
+
+        <!---- Muscles Section ---->
+            <section id="muscles" ng-include="'./muscles.html'"></section>
+
+        <!---- Exercises Section ---->
+            <section id="exercises" ng-include="'./exercises.html'"></section>
+
+        <!---- Groups Section ---->
+          <div ng-show="ctrl.adminLogin">
+            <section id="groups" ng-include="'./groups.html'"></section>
+          </div>
+
+        <!---- Groups Section ---->
+            <section id="exByGroup" ng-include="'./exByGroup.html'"></section>
+            </div>
+          <!-- </div> -->
 
 
 
+      </div>
     </body>
   </div>
 </html>
