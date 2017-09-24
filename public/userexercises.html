@@ -1,7 +1,7 @@
 <div class="userExPage">
   <!-- <button ng-show="ctrl.loggedIn; ctrl.exerciseButton" ng-click="ctrl.getUserExercises()">Get my exercises</button> -->
-
-  <div ng-repeat="user_ex in ctrl.returnedGroup track by $index">
+  <button ng-show="ctrl.backToAccountButton" ng-click="ctrl.backToAccountButtonClicked()">Back to account details</button>
+  <div ng-show="ctrl.user_exDetails" ng-repeat="user_ex in ctrl.returnedGroup track by $index">
     <h3>{{ user_ex.exercise.img }}</h3>
     <h3>{{ user_ex.exercise.exercisename }}</h3>
     <p>{{ user_ex.exercise.desc }}</p>
