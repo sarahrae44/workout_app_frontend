@@ -1,23 +1,25 @@
 <!-- Groups section -->
 <div class="groupsPage" ng-show="ctrl.groups;">
-  <h4 ng-click="ctrl.getGroups();" ng-show="ctrl.showGroupList">Click to see groups</h4>
-  <h4 ng-show="ctrl.hideGroupList" ng-click="ctrl.groupsVisible = ! ctrl.groupsVisible; ctrl.showGroupList = ! ctrl.showGroupList; ctrl.hideGroupList = ! ctrl.hideGroupList">Hide groups</h4>
+  <h4 ng-click="ctrl.getGroups(); ctrl.exByGroup = ! ctrl.exByGroup; ctrl.exercises = ! ctrl.exercises; ctrl.muscles = ! ctrl.muscles" ng-show="ctrl.showGroupList">Click to see groups</h4>
+  <h4 ng-show="ctrl.hideGroupList" ng-click="ctrl.groupsVisible = ! ctrl.groupsVisible; ctrl.showGroupList = ! ctrl.showGroupList; ctrl.hideGroupList = ! ctrl.hideGroupList; ctrl.exByGroup = ! ctrl.exByGroup; ctrl.exercises = ! ctrl.exercises; ctrl.muscles = ! ctrl.muscles">Hide groups</h4>
   <div ng-show="ctrl.groupsVisible">
-    <div ng-repeat="group in ctrl.group track by $index">
+    <ul>
+    <li class="col-md-2 individualListing" ng-repeat="group in ctrl.group track by $index" >
       <h3><a href="#" ng-click="showGroupDetails = ! showGroupDetails">{{ group.groupname }}</a></h3>
 
       <div ng-show="showGroupDetails">
         <h4>{{ group.body.musclename }}</h4>
         <h4>{{ group.exercise.exercisename }}</h4>
         <p>{{ group.exercise.desc }}</p>
-        <p>{{ group.exercise.duration }}</p>
+        <!-- <p>{{ group.exercise.duration }}</p> -->
 
       </div>
       <form ng-submit="ctrl.deleteGroup(group.id)" accept-charset="UTF-8" method="delete">
         <input name="_method" type="hidden" value="destroy"/>
         <button ng-show="ctrl.adminLogin">Delete {{ group.groupname }}</button>
       </form>
-    </div>
+    </li>
+  </ul>
 
   </div>
 

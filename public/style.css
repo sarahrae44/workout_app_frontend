@@ -84,3 +84,9 @@ body {
 .exByGroupsPage {
   background-color: violet;
 }
+
+.individualListing {
+  background-color: gray;
+  display: inline-block;
+  padding: 20px;
+}
