@@ -1,18 +1,22 @@
 <!-- Bodies section -->
 <div ng-show="ctrl.muscles" class="musclesPage">
-  <h4 ng-click="ctrl.getBodies(); ctrl.exByGroup = ! ctrl.exByGroup; ctrl.groups = ! ctrl.groups; ctrl.exercises = ! ctrl.exercises" ng-show="ctrl.showMuscleList;">Click to see muscles</h4>
-  <h4 ng-show="ctrl.hideMuscleList" ng-click="ctrl.musclesVisible = ! ctrl.musclesVisible; ctrl.showMuscleList = ! ctrl.showMuscleList; ctrl.hideMuscleList = ! ctrl.hideMuscleList; ctrl.exByGroup = ! ctrl.exByGroup; ctrl.groups = ! ctrl.groups; ctrl.exercises = ! ctrl.exercises">Hide muscles</h4>
+  <button class="categoryButton" ng-click="ctrl.getBodies(); ctrl.exByGroup = ! ctrl.exByGroup; ctrl.groups = ! ctrl.groups; ctrl.exercises = ! ctrl.exercises" ng-show="ctrl.showMuscleList;">Click to see muscles</button>
+  <button class="categoryButton" ng-show="ctrl.hideMuscleList" ng-click="ctrl.musclesVisible = ! ctrl.musclesVisible; ctrl.showMuscleList = ! ctrl.showMuscleList; ctrl.hideMuscleList = ! ctrl.hideMuscleList; ctrl.exByGroup = ! ctrl.exByGroup; ctrl.groups = ! ctrl.groups; ctrl.exercises = ! ctrl.exercises">Hide muscles</button>
 
-  <div ng-show="ctrl.musclesVisible">
+  <div ng-show="ctrl.musclesVisible" class="musclesPageBG">
     <ul>
-    <li class="col-md-2 individualListing" ng-repeat="body in ctrl.body track by $index" ng-show="ctrl.muscleSection" class="individualListing" >
-      <h3><a href="#" ng-click="showExercises = ! showExercises; showBodyImage = ! showBodyImage">{{ body.musclename }}</a>
+    <li class="individualListing" ng-repeat="body in ctrl.body track by $index" ng-show="ctrl.muscleSection">
+      <h3><a href="#" ng-click="showExercises = ! showExercises; showBodyImage = ! showBodyImage; showIndividualModal = ! showIndividualModal;">{{ body.musclename }}</a>
       </h3>
-      <img ng-show="showBodyImage" src="{{ body.img }}">
-      <div ng-show="showExercises" ng-repeat="exercise in body.exercises track by $index">
-        <h4>{{ exercise.exercisename }}</h4>
-        <img src="{{ exercise.img }}">
-        <p>{{ exercise.desc }}</p>
+      <div ng-show="showIndividualModal" class="ng-modal-overlay ng-modal-individual">
+        <img ng-show="showBodyImage" src="{{ body.img }}">
+        <div ng-show="showExercises" ng-repeat="exercise in body.exercises track by $index">
+          <h4>{{ exercise.exercisename }}</h4>
+          <img src="{{ exercise.img }}">
+          <p>{{ exercise.desc }}</p>
+        </div>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" ng-click="showIndividualModal = ! showIndividualModal">Close</button>
+
       </div>
 
       <button ng-show="ctrl.adminLogin" ng-click="editBodies = ! editBodies; ctrl.editBody(body.id);">Edit {{ body.musclename }}</button><br />

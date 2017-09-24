@@ -77,6 +77,7 @@ app.controller('mainController', ['$http', function($http) {
   this.legs = true;
   this.buttocks = true;
   this.abdomen = true;
+  this.user_exDetails = false;
 
 
 // ===================== User-related =========================
@@ -603,6 +604,8 @@ this.usersafe = {};
       this.user_exes = true;
       this.editUserButton = true;
       this.hideUserExes = true;
+      controller.backToAccountButton = true;
+      controller.user_exDetails = true;
       // this.backToAccountButton = true;
       // this.exerciseButton = false;
       // this.viewUserExes = true;
@@ -661,6 +664,16 @@ this.usersafe = {};
     this.getUserExButton = true;
     this.editUserButton = true;
     this.index = false;
+    this.backToAccountButton = false;
+  }
+
+  this.backToAccountButtonClicked = function() {
+    this.accountDetails = true;
+    this.getUserExButton = true;
+    this.editUserButton = true;
+    this.index = false;
+    this.backToAccountButton = false;
+    this.user_exDetails = false;
   }
 
 }]);
