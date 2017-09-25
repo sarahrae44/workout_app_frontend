@@ -1,5 +1,8 @@
 <!-- Exercises section -->
 <div ng-show="ctrl.exercises" class="exercisesPage">
+
+  <div ng-hide="ctrl.addGroupButtonClicked">
+
   <button class="categoryButton" ng-click="ctrl.getExercises(); ctrl.groups = ! ctrl.groups; ctrl.muscles = ! ctrl.muscles; ctrl.exByGroup = ! ctrl.exByGroup" ng-show="ctrl.showExerciseList">Click to see exercises</button>
   <button class="categoryButton" ng-show="ctrl.hideExerciseList" ng-click="ctrl.exercisesVisible = ! ctrl.exercisesVisible; ctrl.showExerciseList = ! ctrl.showExerciseList; ctrl.hideExerciseList = ! ctrl.hideExerciseList; ctrl.groups = ! ctrl.groups; ctrl.muscles = ! ctrl.muscles; ctrl.exByGroup = ! ctrl.exByGroup">Hide exercises</button>
   <div ng-show="ctrl.exercisesVisible" class="musclesPageBG">
@@ -61,4 +64,5 @@
       <input type="submit">
     </form>
   </div>
+</div>
 </div>
