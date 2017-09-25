@@ -76,11 +76,21 @@ body {
 }
 
 .accountPage {
-  background-color: red;
+  /*background-color: red;*/
+  text-align: center;
 }
 
 .userExPage {
-  background-color: blue;
+  /*background-color: blue;*/
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.6);
+  font-family: 'Oxygen', sans-serif;
+  color: #062F4F;
+}
+
+.userExPageItem {
+  /*background-color: blue;*/
+  padding-bottom: 10px;
 }
 
 .musclesPage {
@@ -94,7 +104,8 @@ body {
 }
 
 .groupsPage {
-  background-color: orange;
+  /*background-color: orange;*/
+  text-align: center;
 }
 
 .exByGroupsPage {
@@ -115,6 +126,10 @@ body {
   padding: 0;
   font-family: 'Oxygen', sans-serif;
   color: #813772;
+}
+
+.group {
+  background-color: rgba(255, 255, 255, 0.6)
 }
 
 .individualListing a {
@@ -181,4 +196,61 @@ ul {
   background-color: rgba(255, 255, 255, 0.6);
   background-position: center top;
   background-repeat: no-repeat;
+}
+
+.modalStyle {
+  color: #062F4F;
+  font-family: 'Russo One', sans-serif;
+}
+
+.ng-modal-edit {
+  /* A centered div above the overlay with a box shadow. */
+  z-index:10000;
+  position:relative;
+  width: 500px; /* Default */
+
+  /* Center the dialog */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  opacity: 1;
+  background-color: #fff;
+  box-shadow: 4px 4px 80px #000;
+  padding: 10px 20px 20px 20px;
+}
+
+.editForm {
+  padding-bottom: 20px;
+}
+
+.ng-modal-userex {
+  /* A centered div above the overlay with a box shadow. */
+  z-index:10000;
+  position:relative;
+  width: 500px; /* Default */
+
+  /* Center the dialog */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  opacity: 1;
+  background-color: #fff;
+  box-shadow: 4px 4px 80px #000;
+  padding: 10px 20px 20px 20px;
+}
+
+.loginError {
+  font-family: 'Oxygen', sans-serif;
+  font-size: 1.5em;
+  color: #062F4F;
+  text-align: center;
+}
+
+.addNew {
+  font-family: 'Oxygen', sans-serif;
+  color: white;
 }

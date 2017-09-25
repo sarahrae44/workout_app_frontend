@@ -1,19 +1,19 @@
 <div class="exByGroupsPage" ng-show="ctrl.exByGroup">
   <h3 class="exByGroupsHeader">Find exercises by body part</h3>
 
-  <button class="bodyGroupButton" ng-click="ctrl.searchArms(); ctrl.showArmsResults = ! ctrl.showArmsResults; ctrl.shoulders = ! ctrl.shoulders; ctrl.chest = ! ctrl.chest; ctrl.back = ! ctrl.back; ctrl.legs = ! ctrl.legs; ctrl.buttocks = ! ctrl.buttocks; ctrl.abdomen = ! ctrl.abdomen" ng-show="ctrl.arms">Arms</button>
+  <button class="bodyGroupButton" ng-click="ctrl.searchArms(); ctrl.showArmsResults = ! ctrl.showArmsResults; ctrl.shoulders = ! ctrl.shoulders; ctrl.chest = ! ctrl.chest; ctrl.back = ! ctrl.back; ctrl.legs = ! ctrl.legs; ctrl.buttocks = ! ctrl.buttocks; ctrl.abdomen = ! ctrl.abdomen; showIndividualModal = ! showIndividualModal;" ng-show="ctrl.arms">Arms</button>
   <ul>
-  <li class="col-md-2 individualListing" ng-show="ctrl.showArmsResults;" ng-repeat="group in ctrl.armsGroup track by $index">
-    <h3>{{ group.body.musclename }}</h3>
-    <h3>{{ group.exercise.exercisename }}</h3>
-    <p>{{ group.exercise.desc }}</p>
+  <li class="col-md-12 individualListing group" ng-show="ctrl.showArmsResults;" ng-repeat="group in ctrl.armsGroup track by $index">
+      <!-- <h3>{{ group.body.musclename }}</h3> -->
+      <h3>{{ group.exercise.exercisename }}</h3>
+      <p>{{ group.exercise.desc }}</p>
   </li>
 </ul>
 
   <button class="bodyGroupButton" ng-click="ctrl.searchShoulders(); ctrl.showShouldersResults = ! ctrl.showShouldersResults; ctrl.arms = ! ctrl.arms; ctrl.chest = ! ctrl.chest; ctrl.back = ! ctrl.back; ctrl.legs = ! ctrl.legs; ctrl.buttocks = ! ctrl.buttocks; ctrl.abdomen = ! ctrl.abdomen"  ng-show="ctrl.shoulders">Shoulders</button>
   <ul>
-  <li class="col-md-2 individualListing" ng-show="ctrl.showShouldersResults" ng-repeat="group in ctrl.shouldersGroup track by $index">
-    <h3>{{ group.body.musclename }}</h3>
+  <li class="col-md-12 individualListing group" ng-show="ctrl.showShouldersResults" ng-repeat="group in ctrl.shouldersGroup track by $index">
+    <!-- <h3>{{ group.body.musclename }}</h3> -->
     <h3>{{ group.exercise.exercisename }}</h3>
     <p>{{ group.exercise.desc }}</p>
   </li>
@@ -21,8 +21,8 @@
 
   <button class="bodyGroupButton" ng-click="ctrl.searchChest(); ctrl.showChestResults = ! ctrl.showChestResults; ctrl.shoulders = ! ctrl.shoulders; ctrl.arms = ! ctrl.arms; ctrl.back = ! ctrl.back; ctrl.legs = ! ctrl.legs; ctrl.buttocks = ! ctrl.buttocks; ctrl.abdomen = ! ctrl.abdomen" ng-show="ctrl.chest">Chest</button>
   <ul>
-  <li class="col-md-2 individualListing" ng-show="ctrl.showChestResults" ng-repeat="group in ctrl.chestGroup track by $index">
-    <h3>{{ group.body.musclename }}</h3>
+  <li class="col-md-12 individualListing group" ng-show="ctrl.showChestResults" ng-repeat="group in ctrl.chestGroup track by $index">
+    <!-- <h3>{{ group.body.musclename }}</h3> -->
     <h3>{{ group.exercise.exercisename }}</h3>
     <p>{{ group.exercise.desc }}</p>
   </li>
@@ -30,8 +30,8 @@
 
   <button class="bodyGroupButton" ng-click="ctrl.searchBack(); ctrl.showBackResults = ! ctrl.showBackResults; ctrl.shoulders = ! ctrl.shoulders; ctrl.chest = ! ctrl.chest; ctrl.arms = ! ctrl.arms; ctrl.legs = ! ctrl.legs; ctrl.buttocks = ! ctrl.buttocks; ctrl.abdomen = ! ctrl.abdomen" ng-show="ctrl.back">Back</button>
   <ul>
-  <li class="col-md-2 individualListing" ng-show="ctrl.showBackResults" ng-repeat="group in ctrl.backGroup track by $index">
-    <h3>{{ group.body.musclename }}</h3>
+  <li class="col-md-12 individualListing group" ng-show="ctrl.showBackResults" ng-repeat="group in ctrl.backGroup track by $index">
+    <!-- <h3>{{ group.body.musclename }}</h3> -->
     <h3>{{ group.exercise.exercisename }}</h3>
     <p>{{ group.exercise.desc }}</p>
   </li>
@@ -39,8 +39,8 @@
 
   <button class="bodyGroupButton" ng-click="ctrl.searchLegs(); ctrl.showLegsResults = ! ctrl.showLegsResults; ctrl.shoulders = ! ctrl.shoulders; ctrl.chest = ! ctrl.chest; ctrl.back = ! ctrl.back; ctrl.arms = ! ctrl.arms; ctrl.buttocks = ! ctrl.buttocks; ctrl.abdomen = ! ctrl.abdomen" ng-show="ctrl.legs">Legs</button>
   <ul>
-  <li class="col-md-2 individualListing" ng-show="ctrl.showLegsResults" ng-repeat="group in ctrl.legsGroup track by $index">
-    <h3>{{ group.body.musclename }}</h3>
+  <li class="col-md-12 individualListing group" ng-show="ctrl.showLegsResults" ng-repeat="group in ctrl.legsGroup track by $index">
+    <!-- <h3>{{ group.body.musclename }}</h3> -->
     <h3>{{ group.exercise.exercisename }}</h3>
     <p>{{ group.exercise.desc }}</p>
   </li>
@@ -48,8 +48,8 @@
 
   <button class="bodyGroupButton" ng-click="ctrl.searchButtocks(); ctrl.showButtocksResults = ! ctrl.showButtocksResults;ctrl.shoulders = ! ctrl.shoulders; ctrl.chest = ! ctrl.chest; ctrl.back = ! ctrl.back; ctrl.legs = ! ctrl.legs; ctrl.arms = ! ctrl.arms; ctrl.abdomen = ! ctrl.abdomen" ng-show="ctrl.buttocks">Buttocks</button>
   <ul>
-  <li class="col-md-2 individualListing" ng-show="ctrl.showButtocksResults" ng-repeat="group in ctrl.buttocksGroup track by $index">
-    <h3>{{ group.body.musclename }}</h3>
+  <li class="col-md-12 individualListing group" ng-show="ctrl.showButtocksResults" ng-repeat="group in ctrl.buttocksGroup track by $index">
+    <!-- <h3>{{ group.body.musclename }}</h3> -->
     <h3>{{ group.exercise.exercisename }}</h3>
     <p>{{ group.exercise.desc }}</p>
   </li>
@@ -57,8 +57,8 @@
 
   <button class="bodyGroupButton" ng-click="ctrl.searchAbdomen(); ctrl.showAbdomenResults = ! ctrl.showAbdomenResults;ctrl.shoulders = ! ctrl.shoulders; ctrl.chest = ! ctrl.chest; ctrl.back = ! ctrl.back; ctrl.legs = ! ctrl.legs; ctrl.buttocks = ! ctrl.buttocks; ctrl.arms = ! ctrl.arms" ng-show="ctrl.abdomen">Abdomen</button>
   <ul>
-  <li class="col-md-2 individualListing" ng-show="ctrl.showAbdomenResults" ng-repeat="group in ctrl.abdomenGroup track by $index">
-    <h3>{{ group.body.musclename }}</h3>
+  <li class="col-md-12 individualListing group" ng-show="ctrl.showAbdomenResults" ng-repeat="group in ctrl.abdomenGroup track by $index">
+    <!-- <h3>{{ group.body.musclename }}</h3> -->
     <h3>{{ group.exercise.exercisename }}</h3>
     <p>{{ group.exercise.desc }}</p>
   </li>

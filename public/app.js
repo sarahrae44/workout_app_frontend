@@ -362,7 +362,7 @@ app.controller('mainController', ['$http', function($http) {
     }).then(function(response) {
       console.log(response);
       this.group = response.data.group;
-      controller.getGroups();
+      // controller.getGroups();
     })
   }
 
@@ -674,6 +674,10 @@ this.usersafe = {};
     this.index = false;
     this.backToAccountButton = false;
     this.user_exDetails = false;
+  }
+
+  this.editUserForm = function() {
+    this.editUserDets = true;
   }
 
 }]);

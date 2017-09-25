@@ -4,11 +4,10 @@
   <button class="categoryButton" ng-show="ctrl.hideExerciseList" ng-click="ctrl.exercisesVisible = ! ctrl.exercisesVisible; ctrl.showExerciseList = ! ctrl.showExerciseList; ctrl.hideExerciseList = ! ctrl.hideExerciseList; ctrl.groups = ! ctrl.groups; ctrl.muscles = ! ctrl.muscles; ctrl.exByGroup = ! ctrl.exByGroup">Hide exercises</button>
   <div ng-show="ctrl.exercisesVisible" class="musclesPageBG">
     <ul>
-    <li class="individualListing" ng-show="ctrl.exerciseSection" ng-repeat="exercise in ctrl.exercise track by $index">
-
+    <li class="individualListing" ng-repeat="exercise in ctrl.exercise track by $index" ng-show="ctrl.exerciseSection">
         <h3><a href="#" ng-click="ctrl.showMuscles = ! ctrl.showMuscles; showIndividualModal = ! showIndividualModal;">{{ exercise.exercisename }}</a></h3>
-  <div ng-show="showIndividualModal" class="ng-modal-overlay ng-modal-individual">
-        <div ng-show="ctrl.showMuscles" ng-repeat="body in exercise.bodies track by $index">
+        <div ng-show="showIndividualModal" class="ng-modal-overlay ng-modal-individual">
+        <div ng-repeat="body in exercise.bodies track by $index">
           <img src="{{ exercise.img }}">
           <h3>{{ exercise.exercisename }}</h3>
           <h4>{{ exercise.desc }}</h4>
@@ -51,14 +50,14 @@
     </div>
 
   <div ng-click="ctrl.addNewExercise = ! ctrl.addNewExercise">
-    <h3 ng-show="ctrl.adminLogin">Add new exercise</h3>
+    <h3 ng-show="ctrl.adminLogin" class="addNew">Add new exercise</h3>
   </div>
   <div ng-show="ctrl.addNewExercise">
     <form ng-submit="ctrl.createExercise(newExercise)">
       <input type="text" ng-model="newExercise.exercisename" placeholder="name"/>
       <input type="text" ng-model="newExercise.img" placeholder="img path"/>
       <input type="text" ng-model="newExercise.desc" placeholder="description"/>
-      <input type="text" ng-model="newExercise.duration" placeholder="1 or 2"/>
+      <input type="text" ng-model="newExercise.duration" placeholder="duration: 1 or 2"/>
       <input type="submit">
     </form>
   </div>
