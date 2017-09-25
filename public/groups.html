@@ -34,6 +34,21 @@
       <select name="group[body_id]" ng-model="newGroup.body_id">
       <option ng-repeat="body in ctrl.body track by $index" value="{{ body.id }}">{{ body.musclename }}</option>
       </select>
+      <select name="group.muscleName2" ng-model="newGroup.muscleName2">
+      <option ng-repeat="body in ctrl.body track by $index" value="{{ body.musclename }}">{{ body.musclename }}</option>
+      </select>
+      <select name="group.muscleName3" ng-model="newGroup.muscleName3">
+      <option ng-repeat="body in ctrl.body track by $index" value="{{ body.musclename }}">{{ body.musclename }}</option>
+      </select>
+      <select name="group.muscleName4" ng-model="newGroup.muscleName4">
+      <option ng-repeat="body in ctrl.body track by $index" value="{{ body.musclename }}">{{ body.musclename }}</option>
+      </select>
+      <select name="group.muscleName5" ng-model="newGroup.muscleName5">
+      <option ng-repeat="body in ctrl.body track by $index" value="{{ body.musclename }}">{{ body.musclename }}</option>
+      </select>
+      <select name="group.muscleName6" ng-model="newGroup.muscleName6">
+      <option ng-repeat="body in ctrl.body track by $index" value="{{ body.musclename }}">{{ body.musclename }}</option>
+      </select>
       <select name="group[exercise_id]" ng-model="newGroup.exercise_id">
       <option ng-repeat="exercise in ctrl.exercise" value="{{ exercise.id }}">{{ exercise.exercisename }}</option>
       </select>

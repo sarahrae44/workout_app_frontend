@@ -5,8 +5,14 @@
   <ul>
   <li class="col-md-12 individualListing group" ng-show="ctrl.showArmsResults;" ng-repeat="group in ctrl.armsGroup track by $index">
       <!-- <h3>{{ group.body.musclename }}</h3> -->
-      <h3>{{ group.exercise.exercisename }}</h3>
-      <p>{{ group.exercise.desc }}</p>
+      <h3>Exercise: {{ group.exercise.exercisename }}</h3>
+      <p>Description: {{ group.exercise.desc }}<br/>
+      Muscles worked: {{ group.body.musclename }}<br/>
+      {{ group.muscleName2 }}<br/>
+      {{ group.muscleName3 }}<br/>
+      {{ group.muscleName4 }}<br/>
+      {{ group.muscleName5 }}<br/>
+      {{ group.muscleName6 }}</p>
   </li>
 </ul>
 
