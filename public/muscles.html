@@ -15,6 +15,7 @@
       <div ng-show="showIndividualModal" class="ng-modal-overlay ng-modal-individual">
         <img ng-show="showBodyImage" src="{{ body.img }}">
         <div ng-show="showExercises" ng-repeat="exercise in body.exercises track by $index">
+          <h3>{{ body.musclename }}
           <h4>{{ exercise.exercisename }}</h4>
           <img src="{{ exercise.img }}">
           <p>{{ exercise.desc }}</p>
