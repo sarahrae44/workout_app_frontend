@@ -6,9 +6,9 @@ app.controller('mainController', ['$http', function($http) {
   const controller = this;
   this.message = "controller works";
 
-  this.url = 'http://localhost:3000';
+  // this.url = 'http://localhost:3000';
 
-  // this.url = 'https://workout-app-api.herokuapp.com';
+  this.url = 'https://workout-app-api.herokuapp.com';
   this.muscle = {};
   // this.body.exercise = {};
   this.currentBody = {};
@@ -38,7 +38,6 @@ app.controller('mainController', ['$http', function($http) {
   this.groupsVisible = false;
   this.muscleHeader = true;
   this.addNewMuscleGroup = false;
-  this.muscleGroupSection = true;
   this.showMuscleGroupList = true;
   this.hideMuscleGroupList = false;
   this.muscleGroupsVisible = false;
@@ -78,6 +77,7 @@ app.controller('mainController', ['$http', function($http) {
   this.buttocks = true;
   this.abdomen = true;
   this.user_exDetails = false;
+  this.addGroupButtonClicked = false;
 
 
 // ===================== User-related =========================
@@ -215,7 +215,7 @@ app.controller('mainController', ['$http', function($http) {
     }).then(function(response) {
       console.log(response);
       this.body = response.data.body;
-      controller.getBodies();
+      // controller.getBodies();
     })
   }
 
@@ -227,9 +227,25 @@ app.controller('mainController', ['$http', function($http) {
     }).then(function(response) {
       console.log(response.data);
       controller.body = response.data;
-      controller.hideMuscleList = ! controller.hideMuscleList;
-      controller.showMuscleList = ! controller.showMuscleList;
-      controller.musclesVisible = ! controller.musclesVisible;
+      controller.hideMuscleList = true;
+      controller.showMuscleList = false;
+      controller.musclesVisible = true;
+      controller.exByGroup = false;
+      controller.groups = false;
+      controller.exercises = false;
+    })
+  }
+
+  this.getBodiesAdmin = function() {
+    $http({
+      url: this.url + '/bodies',
+      method: 'GET'
+    }).then(function(response) {
+      console.log(response.data);
+      controller.body = response.data;
+      controller.hideMuscleList = false;
+      // controller.showMuscleList = ! controller.showMuscleList;
+      // controller.musclesVisible = ! controller.musclesVisible;
     })
   }
 
@@ -285,7 +301,7 @@ app.controller('mainController', ['$http', function($http) {
     }).then(function(response) {
       console.log(response);
       this.exercise = response.data.exercise;
-      controller.getExercises();
+      // controller.getExercises();
     })
   }
 
@@ -362,6 +378,17 @@ app.controller('mainController', ['$http', function($http) {
     }).then(function(response) {
       console.log(response);
       this.group = response.data.group;
+      controller.addGroupButtonClicked = false;
+      controller.muscles = true;
+      controller.hideMuscleList = false;
+      controller.showMuscleList = true;
+      controller.musclesVisible = false;
+      controller.muscleSection = true;
+      controller.exercises = true;
+      controller.hideExerciseList = false;
+      controller.showExerciseList = true;
+      controller.exercisesVisible = false;
+      controller.exerciseSection = true;
       // controller.getGroups();
     })
   }
