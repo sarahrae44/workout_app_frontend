@@ -1,6 +1,6 @@
 <!-- <div ng-show="ctrl.account"> -->
   <!-- Register form -->
-  <div ng-show="ctrl.registerModal" class="ng-modal-overlay ng-modal-dialog">
+  <div ng-show="ctrl.registerModal" class="ng-modal-overlay ng-modal-dialog modalStyle">
     <h3 class="text-center">Register</h3>
     <form ng-submit="ctrl.createUser(userPass)" class="ng-modal-dialog-content">
       <input type="text" ng-model="userPass.username" placeholder="Username"/>
@@ -10,7 +10,7 @@
     </div>
 
     <!-- Login form -->
-    <div ng-show="ctrl.loginModal" class="ng-modal-overlay ng-modal-dialog">
+    <div ng-show="ctrl.loginModal" class="ng-modal-overlay ng-modal-dialog modalStyle">
     <h3 class="text-center">Log In</h3>
     <form ng-submit="ctrl.login(userPass)" class="ng-modal-dialog-content">
       <input type="text" ng-model="userPass.username" placeholder="username"/>
@@ -20,7 +20,7 @@
     </div>
 
 
-    <div ng-show="ctrl.errorModal" class="ng-modal-overlay ng-modal-dialog">
+    <div ng-show="ctrl.errorModal" class="ng-modal-overlay ng-modal-dialog loginError">
     <p>You are not a registered user or have entered incorrect credentials. Please <a href="#" ng-click="ctrl.registerModal = ! ctrl.registerModal; ctrl.errorModal = ! ctrl.errorModal">register</a> or try <a href="#" ng-click="ctrl.loginModal = ! ctrl.loginModal; ctrl.errorModal = ! ctrl.errorModal">logging in</a> again before proceeding.</p>
     <br />
     <br />
