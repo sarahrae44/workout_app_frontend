@@ -6,9 +6,9 @@ app.controller('mainController', ['$http', function($http) {
   const controller = this;
   this.message = "controller works";
 
-  // this.url = 'http://localhost:3000';
+  this.url = 'http://localhost:3000';
 
-  this.url = 'https://workout-app-api.herokuapp.com';
+  // this.url = 'https://workout-app-api.herokuapp.com';
   this.muscle = {};
   // this.body.exercise = {};
   this.currentBody = {};
@@ -134,7 +134,7 @@ app.controller('mainController', ['$http', function($http) {
           this.adminLogin = false;
         }
       }
-      console.log('logged in? ', this.loggedin);
+      console.log('logged in? ', this.loggedIn);
       console.log('user?', this.user);
       console.log('username: ', userPass.username);
       console.log('password: ', userPass.password);
