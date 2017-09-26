@@ -44,7 +44,7 @@
     </div>
 
     <div ng-show="ctrl.adminLogin" ng-click="ctrl.addNewMuscle = ! ctrl.addNewMuscle">
-      <h3 class="addNew">Add new muscle/group</h3>
+      <h3 class="addNew">Add new muscle</h3>
     </div>
     <div ng-show="ctrl.addNewMuscle;">
       <form ng-submit="ctrl.createBody(newBody)">
@@ -54,7 +54,7 @@
       </form>
     </div>
   </div>
-  <div ng-show="ctrl.adminLogin" ng-click="ctrl.addNewMuscle = ! ctrl.addNewMuscle">
+  <!-- <div ng-show="ctrl.adminLogin" ng-click="ctrl.addNewMuscle = ! ctrl.addNewMuscle">
     <h3 class="addNew">Add new muscle</h3>
   </div>
   <div ng-show="ctrl.addNewMuscle;">
@@ -63,6 +63,6 @@
       <input type="text" ng-model="newBody.img" placeholder="img path"/>
       <input type="submit">
     </form>
-  </div>
+  </div> -->
 </div>
 </div>
