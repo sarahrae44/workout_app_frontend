@@ -49,3 +49,5 @@ I will add pictures of exercises. Just ran out of time on that one
 
 * Will be adding these with future enhancements
 
+## Dev time
+As of 9/26 - 96 hours
