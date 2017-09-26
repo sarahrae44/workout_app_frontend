@@ -1,6 +1,6 @@
 # workout_app_frontend
 
-A website based on a strength training anatomy book I have. Text taken from Strength Training Anatomy by Frederic Delavier
+A website based on a strength training anatomy book I have. Text taken from *Strength Training Anatomy* by Frederic Delavier
 
 ## User stories
 
@@ -33,6 +33,12 @@ Add a stopwatch function
 Add an image of the human body with 'hot spots' that will take user to various exercises that correspond with that part of the body (instead of via a list)
 
 List of equipment needed
+
+## Known bugs
+Cannot delete user if exercises are saved under that user
+
+Need to make it possible for user to delete saved exercises
+
 
 ## End of project reflections/improvements to be made
 I'm able to delete an exercise/muscle in local host but not in the Heroku site(?) so will be updating that
