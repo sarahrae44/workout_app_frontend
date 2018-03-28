@@ -1,23 +1,23 @@
 body {
-  background-image: url('https://i.imgur.com/E5wltqL.png');
+  /*background-image: url('https://i.imgur.com/E5wltqL.png');
   background-size: cover;
   background-position: center top;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat;*/
   margin-left:-15px;
   margin-right:-15px;
+  /*padding-bottom: 100px;*/
+  background-color: grey;
+}
+
+.mainBody {
+  /*background-image: url('https://i.imgur.com/E5wltqL.png');*/
+  background-color: grey;
+  /*background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;*/
+  margin: 0 -15px -15px -15px;
   padding-bottom: 100px;
 }
-/*
-.mainBody {
-  background-image: url('https://i.imgur.com/E5wltqL.png');
-  background-color: #062f4f;
-  background-size: cover;
-  background-position: center top;
-  background-repeat: no-repeat;
-  margin-left:-15px;
-  margin-right:-15px;
-  padding-bottom: 100px;
-}*/
 
 .header{
   font-size: 1em;
