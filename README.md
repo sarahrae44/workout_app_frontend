@@ -53,3 +53,5 @@ I will add pictures of exercises. Just ran out of time on that one
 
 ## Dev time
 As of 9/26 - 96 hours
+
+3/28/18 - updated background to enable faster loading
