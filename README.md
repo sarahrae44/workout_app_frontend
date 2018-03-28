@@ -18,6 +18,8 @@ User can choose a workout focusing on chest/back, legs, core, etc*
 
 User will be able to save exercises(s) to their account
 
+There is an admin account that can create, edit and delete muscles and exercises as well as create and delete groups
+
 ## MVP features
 Ruby on Rails project
 
@@ -49,3 +51,5 @@ I will add pictures of exercises. Just ran out of time on that one
 
 * Will be adding these with future enhancements
 
+## Dev time
+As of 9/26 - 96 hours
