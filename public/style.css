@@ -28,8 +28,10 @@ li {
 }
 
 .header{
-  font-size: 1em;
+  font-size: 3em;
   color: white;
+  font-family: 'Russo One', sans-serif;
+  padding-top: .3em;
 }
 
 .ng-modal-overlay {
@@ -153,11 +155,6 @@ ul {
 
 .navbarPadding {
   padding: .5em .5em 0 .5em;
-}
-
-.header3 {
-  font-family: 'Russo One', sans-serif;
-  font-size: 3em;
 }
 
 .ng-modal-individual {
