@@ -9,6 +9,10 @@ body {
   background-color: grey;
 }
 
+li {
+  padding-right: 1em;
+}
+
 .mainBody {
   /*background-image: url('https://i.imgur.com/E5wltqL.png');*/
   background-color: grey;
@@ -17,6 +21,10 @@ body {
   background-repeat: no-repeat;*/
   margin: 0 -15px -15px -15px;
   padding-bottom: 100px;
+}
+
+.navBg {
+  background-color: black;
 }
 
 .header{
@@ -144,7 +152,7 @@ ul {
 }
 
 .navbarPadding {
-  padding: 0 20px;
+  padding: .5em .5em 0 .5em;
 }
 
 .header3 {
@@ -193,9 +201,9 @@ ul {
 
 .musclesPageBG {
   /*background-image: url('https://i.imgur.com/E5wltqL.png');*/
-  background-color: rgba(255, 255, 255, 0.6);
+  /*background-color: rgba(255, 255, 255, 0.6);
   background-position: center top;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat;*/
 }
 
 .modalStyle {
