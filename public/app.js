@@ -78,6 +78,7 @@ app.controller('mainController', ['$http', function($http) {
   this.abdomen = true;
   this.user_exDetails = false;
   this.addGroupButtonClicked = false;
+  // this.showIndividualModal = false;
 
 
 // ===================== User-related =========================
