@@ -11,12 +11,14 @@
           <h3><a href="#" ng-click="showExercises = ! showExercises; showBodyImage = ! showBodyImage; showIndividualModal = ! showIndividualModal;">{{ body.musclename }}</a>
           </h3>
           <div ng-show="showIndividualModal" class="ng-modal-overlay ng-modal-individual">
-            <img ng-show="showBodyImage" src="{{ body.img }}">
-            <div ng-show="showExercises" ng-repeat="exercise in body.exercises track by $index">
-              <h3>{{ body.musclename }}
-              <h4>{{ exercise.exercisename }}</h4>
-             <img src="{{ exercise.img }}">
-              <p>{{ exercise.desc }}</p>
+            <h3 class="muscleName">{{ body.musclename }}</h3>
+
+            <!-- <img ng-show="showBodyImage" src="{{ body.img }}"> -->
+            <div ng-show="showExercises" ng-repeat="exercise in body.exercises track by $index" class="individualMusclewExercise">
+              <!-- <h3 class="muscleName">{{ body.musclename }}</h3> -->
+              <h5 class="exerciseName font-weight-bold"> {{ exercise.exercisename }}</h5>
+             <!-- <img src="{{ exercise.img }}"> -->
+              <p class="description"><span class="font-weight-bold">Description:</span> {{ exercise.desc }}</p>
 
 
 

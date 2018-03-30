@@ -202,8 +202,10 @@ ul {
 
 .individualExerciseListing h4 {
   font-family: 'Oxygen', sans-serif;
-  color: #B82601
+  color: #B82601;
+  padding-top: 1em;
 }
+
 .exerciseContainer {
   margin: 4rem;
 }
@@ -280,6 +282,25 @@ ul {
 .addNew {
   font-family: 'Oxygen', sans-serif;
   color: white;
+}
+
+.individualMusclewExercise {
+  margin: 2em 10em;
+}
+
+.muscleName {
+  font-family: 'Oxygen', sans-serif;
+  color: #B82601
+}
+
+.exerciseName {
+  font-family: 'Oxygen', sans-serif;
+  color: black;
+}
+
+.description {
+  color: black;
+  font-family: sans-serif;
 }
 
 /*media queries*/

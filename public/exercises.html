@@ -11,7 +11,7 @@
         <!-- <h3><a href="#" ng-click="ctrl.showMuscles = ! ctrl.showMuscles; showIndividualModal = ! showIndividualModal;">{{ exercise.exercisename }}</a></h3>
         <div ng-show="showIndividualModal" class="ng-modal-overlay ng-modal-individual"> -->
         <div ng-repeat="body in exercise.bodies track by $index">
-          <img src="{{ exercise.img }}">
+          <!-- <img src="{{ exercise.img }}"> -->
           <h4>{{ exercise.exercisename }}</h4>
           <p>{{ exercise.desc }}</p>
           <h6><span class="font-weight-bold">Muscles Worked:</span> {{ body.musclename }}</h6>
