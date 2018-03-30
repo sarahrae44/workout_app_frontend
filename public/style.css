@@ -189,6 +189,25 @@ ul {
   width: 320px;
 }
 
+.individualExerciseListing {
+  display: inline-block;
+  width: 22%;
+  vertical-align: top;
+  background-color: #cccccc;
+  margin: 1rem .5rem;
+  padding: .5rem;
+  border-radius: 1rem;
+  box-shadow: 4px 4px 24px #000;
+}
+
+.individualExerciseListing h4 {
+  font-family: 'Oxygen', sans-serif;
+  color: #B82601
+}
+.exerciseContainer {
+  margin: 4rem;
+}
+
 .bodyGroupButton {
   background-color: rgba(255, 255, 255, 0.6);
   padding: 10px 40px;

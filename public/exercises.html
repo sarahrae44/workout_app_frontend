@@ -5,22 +5,22 @@
 
   <button class="categoryButton" ng-click="ctrl.getExercises(); ctrl.groups = ! ctrl.groups; ctrl.muscles = ! ctrl.muscles; ctrl.exByGroup = ! ctrl.exByGroup" ng-show="ctrl.showExerciseList">Click to see exercises</button>
   <button class="categoryButton" ng-show="ctrl.hideExerciseList" ng-click="ctrl.exercisesVisible = ! ctrl.exercisesVisible; ctrl.showExerciseList = ! ctrl.showExerciseList; ctrl.hideExerciseList = ! ctrl.hideExerciseList; ctrl.groups = ! ctrl.groups; ctrl.muscles = ! ctrl.muscles; ctrl.exByGroup = ! ctrl.exByGroup">Hide exercises</button>
-  <div ng-show="ctrl.exercisesVisible" class="musclesPageBG">
+  <div ng-show="ctrl.exercisesVisible" class="exerciseContainer">
     <ul>
-    <li class="individualListing" ng-repeat="exercise in ctrl.exercise track by $index" ng-show="ctrl.exerciseSection">
-        <h3><a href="#" ng-click="ctrl.showMuscles = ! ctrl.showMuscles; showIndividualModal = ! showIndividualModal;">{{ exercise.exercisename }}</a></h3>
-        <div ng-show="showIndividualModal" class="ng-modal-overlay ng-modal-individual">
+    <li class="individualExerciseListing" ng-repeat="exercise in ctrl.exercise track by $index" ng-show="ctrl.exerciseSection">
+        <!-- <h3><a href="#" ng-click="ctrl.showMuscles = ! ctrl.showMuscles; showIndividualModal = ! showIndividualModal;">{{ exercise.exercisename }}</a></h3>
+        <div ng-show="showIndividualModal" class="ng-modal-overlay ng-modal-individual"> -->
         <div ng-repeat="body in exercise.bodies track by $index">
           <img src="{{ exercise.img }}">
-          <h3>{{ exercise.exercisename }}</h3>
-          <h4>{{ exercise.desc }}</h4>
-          <h5>{{ body.musclename }}</h5>
+          <h4>{{ exercise.exercisename }}</h4>
+          <p>{{ exercise.desc }}</p>
+          <h6><span class="font-weight-bold">Muscles Worked:</span> {{ body.musclename }}</h6>
           <!-- <img src="{{ body.img }}"> -->
           <!-- <p>{{ exercise.desc }}</p> -->
         </div>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" ng-click="showIndividualModal = ! showIndividualModal">Close</button>
+        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal" ng-click="showIndividualModal = ! showIndividualModal">Close</button> -->
 
-      </div>
+      <!-- </div> -->
 
         <button ng-show="ctrl.adminLogin" ng-click="editExercises = ! editExercises; ctrl.editExercise(exercise.id);">Edit {{ exercise.exercisename }}</button><br />
 
