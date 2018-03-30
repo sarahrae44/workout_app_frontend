@@ -281,3 +281,22 @@ ul {
   font-family: 'Oxygen', sans-serif;
   color: white;
 }
+
+/*media queries*/
+@media (max-width: 575.98px) {
+  .individualExerciseListing {
+    width: 88%;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .individualExerciseListing {
+    width: 44%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .individualExerciseListing {
+    width: 29%;
+  }
+}
