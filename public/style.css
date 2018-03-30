@@ -321,3 +321,9 @@ ul {
     width: 29%;
   }
 }
+
+@media (max-width: 768px) {
+  .individualMusclewExercise {
+    margin: .2em 1em;
+  }
+}
