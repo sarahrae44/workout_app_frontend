@@ -328,4 +328,8 @@ ul {
   .individualMusclewExercise {
     margin: .2em 1em;
   }
+
+  .group {
+    width: 90%;
+  }
 }
