@@ -59,3 +59,5 @@ As of 9/26 - 96 hours
 3/29/18 - updated to Bootstrap 4 and updated muscle and exercise listing (4 hours)
 
 3/30/18 - updated exercise and muscles page (1 hour)
+
+4/9/2018 - updated muscle group rendering (.25 hour)
