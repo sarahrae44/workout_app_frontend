@@ -133,12 +133,14 @@ li {
   /*background-color: rgba(255, 255, 255, 0.6);*/
   text-align: center;
   /*display: inline-block;*/
-  padding: 0;
+  padding: 1em 5% 0 5%;
   font-family: 'Oxygen', sans-serif;
   color: #813772;
 }
 
 .group {
+  width: 60%;
+  margin: 0 auto;
   background-color: rgba(255, 255, 255, 0.6)
 }
 
