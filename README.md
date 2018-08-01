@@ -61,3 +61,5 @@ As of 9/26 - 96 hours
 3/30/18 - updated exercise and muscles page (1 hour)
 
 4/9/2018 - updated muscle group rendering (.25 hour)
+
+4/17/2018 - pushed to heroku (live site)
